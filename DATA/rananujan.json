@@ -1,0 +1,540 @@
+{
+"id": "ramanuja",
+"name": "Ramanuja",
+"birthYear": 1017,
+"deathYear": 1137,
+"birthLocation": {
+"city": "Sriperumbudur",
+"region": "Tamil Nadu",
+"modernCountry": "India",
+"coordinates": [12.9655, 79.9454]
+},
+
+"primaryDomain": "Metaphysics",
+"allDomains": ["Aesthetics", "Ethics", "Logic", "Metaphysics", "Politics"],
+"domainStrengths": {
+"Logic": 85,
+"Aesthetics": 60,
+"Ethics": 95,
+"Politics": 40,
+"Metaphysics": 100
+},
+
+"era": "Medieval",
+"eraPosition": 0.4,
+
+"spiralDynamicsStage": "Blue",
+"spiralJustification": "Ramanuja's philosophy, Vishishtadvaita (qualified non-dualism), is deeply rooted in a Blue, absolutist, and mythic order value system. His entire theological and philosophical project is centered on establishing the supreme authority of the Vedas, Upanishads, and other sacred texts (Puranas, etc.) as the ultimate source of truth. This aligns perfectly with the Blue meme's emphasis on a single, divinely ordained truth and a structured, hierarchical reality governed by a higher power (Brahman/Vishnu). His system is not about individualistic achievement (Orange) or relativistic understanding (Green), but about finding one's proper place within a pre-ordained cosmic order through devotion (bhakti) and surrender (prapatti). He provides a clear, unambiguous path to salvation, defined by adherence to tradition, scripture, and the authority of the divine. His strong critique of Shankara's Advaita is a defense of this Blue worldview against what he perceived as a path that could lead to a denial of the literal truth of scriptures and the personal nature of God.",
+"spiralTransitions": [
+{
+"fromStage": "Red",
+"toStage": "Blue",
+"description": "While not personal, Ramanuja's philosophy can be seen as a societal transition from Red (egocentric power gods, local deities) to Blue (a universal, ordered, and just cosmic system under a single Supreme Being). He systematically integrated various devotional traditions (from the Alvars) into a structured, orthodox framework, providing a universal system of meaning and purpose that transcended mere tribal or heroic loyalties, offering stability and a clear moral code for all.",
+"evidenceWorks": ["Sri Bhasya", "Vedartha Sangraha"]
+}
+],
+
+"philosophicalGenome": {
+"beingVsBecoming": "Both",
+"oneVsMany": "Both",
+"mindVsMatter": "Dualist",
+"freedomVsDeterminism": "Compatibilist",
+"transcendentVsImmanent": "Both",
+"realismVsAntiRealism": "Realist",
+"reasonVsExperience": "Both",
+"absoluteVsRelative": "Absolute",
+
+"genomeJustifications": {
+"beingVsBecoming": "Ramanuja’s Brahman is eternal and unchanging (Being), but the world of sentient souls (cit) and insentient matter (acit) is real and subject to change (Becoming). They form the 'body' of Brahman, eternally dependent yet distinct, thus integrating both concepts.",
+"oneVsMany": "Vishishtadvaita means 'qualified non-dualism.' There is One ultimate reality, Brahman. However, this One is qualified by the Many—the plurality of individual souls and the material world, which are real, eternal, and distinct attributes of Brahman. Unity and diversity are both real.",
+"mindVsMatter": "Ramanuja posits three real entities: Brahman (the supreme consciousness), cit (individual consciousness/souls), and acit (insentient matter). This is a form of dualism where mind/consciousness (cit) and matter (acit) are fundamentally different categories, both dependent on the third, higher reality of Brahman.",
+"freedomVsDeterminism": "The individual soul possesses free will to act and is responsible for its karma. However, this freedom operates within the framework of divine grace. God is the ultimate enabler, permitting action, but the choice to act virtuously or not rests with the individual. Salvation ultimately requires divine grace, making it a compatibilist position.",
+"transcendentVsImmanent": "Brahman is transcendent, existing beyond the empirical world as its supreme controller. Simultaneously, Brahman is immanent, pervading the entire universe as its inner controller (antaryamin). The world is Brahman's body, making God both within and beyond everything.",
+"realismVsAntiRealism": "Ramanuja is a staunch realist. The external world is not an illusion (maya) as in Shankara's Advaita. It is entirely real, an eternal attribute of Brahman. Our perception of a pluralistic world is valid and corresponds to reality.",
+"reasonVsExperience": "Knowledge comes from three sources: perception, inference (reason), and scripture (experience of revealed truth). Reason is a valid tool for understanding the world, but for knowledge of ultimate reality (Brahman), it must be guided by and subordinate to scripture, which is the highest authority. Devotional experience (bhakti) is also a key path to knowledge and is considered an epistemic state.",
+"absoluteVsRelative": "Moral and metaphysical truths are absolute, grounded in the unchanging nature of Brahman and revealed in the eternal Vedas. There is one correct understanding of reality and one ultimate path to salvation, although it can be approached through different prescribed duties (varnashrama dharma)."
+}
+},
+
+"switchPoints": [
+{
+"question": "Is the phenomenal world real or illusory?",
+"position": "Unity",
+"argument": "The world (acit) and individual souls (cit) are as real as Brahman, of whom they form the body. To call the world an illusion (maya) contradicts the scriptural accounts of creation and the omniscience of Brahman. If Brahman perceives the world, it must be real. This is his core critique of Shankara’s Mayavada. The world is an eternal mode or attribute of God, not a superimposition on him.",
+"domainCascades": {
+"Ethics": "If the world and other souls are real, ethical actions towards them have ultimate significance. Bhakti (devotion) and Prapatti (surrender) are meaningful acts directed toward a real God and a real community of devotees.",
+"Politics": "It validates the social order (varnas) as a real, divinely sanctioned structure for societal function, not an illusion to be transcended through knowledge alone.",
+"Aesthetics": "The beauty of the natural world is not a distraction or illusion, but a genuine manifestation of God's glory, making aesthetic appreciation a valid spiritual path.",
+"Logic": "It grounds logic and epistemology in realism. Our perceptions and inferences about the world are valid means of knowledge because they correspond to a real, external reality."
+}
+}
+],
+
+"comprehensiveBiography": "Ramanuja (1017–1137 CE, though modern scholars suggest 1077–1157 CE) was a seminal theologian, philosopher, and social reformer in the Sri Vaishnavism tradition of Hinduism. Born in Sriperumbudur, Tamil Nadu, into a Brahmin family, he demonstrated a prodigious intellect from a young age. His early education was under Yadava Prakasha, an Advaita scholar, but Ramanuja soon found himself in profound disagreement with his teacher's impersonal interpretation of the Upanishads. He famously refuted his guru’s explanations on several occasions, leading to a hostile parting. According to hagiographies, Yadava Prakasha even plotted to kill the young Ramanuja, who was saved by a divine intervention. After this break, Ramanuja sought out the lineage of the Alvars, poet-saints whose ecstatic devotionalism would heavily influence his philosophy. He became the disciple of Yamunacharya, the leading Sri Vaishnava acharya, although he never met him in person, arriving in Srirangam only after Yamunacharya's death. Ramanuja took it upon himself to fulfill his master's three final wishes: to write a commentary on the Brahma Sutras from a Vishishtadvaita perspective (the Sri Bhasya), to honor the Alvars, and to write a commentary on the Bhagavad Gita. He became the head of the Srirangam temple, the epicenter of Sri Vaishnavism, where he reformed temple administration and worship rituals, making them more inclusive. His teachings challenged the rigidities of the caste system, opening the doors of devotion to all, regardless of birth. This led to persecution by the Chola king, Kulothunga Chola I, a staunch Shaivite, forcing Ramanuja into exile in the Hoysala kingdom (modern-day Karnataka) for over a decade. There, he converted the Jain king, Vishnuvardhana, to Vaishnavism, and established the Cheluvanarayana Swamy Temple in Melukote. After the Chola king's death, Ramanuja returned to Srirangam, where he continued to teach, write, and consolidate the Sri Vaishnavism tradition until his death at the remarkable age of 120 (according to traditional accounts). His life was a testament to his twin goals: providing a robust philosophical foundation for theism and making the path of loving devotion accessible to all.",
+"intellectualJourney": "Ramanuja's intellectual journey was a relentless drive to synthesize the philosophical rigor of the Vedanta tradition with the passionate, heart-centered devotion of the Alvars. His initial training under the Advaitin Yadava Prakasha was the catalyst; it was a negative imprint that defined what he needed to refute. His break with Yadava marked his rejection of an impersonal, attributeless Absolute (Nirguna Brahman) and the doctrine of Maya (illusion). The next crucial phase was his implicit inheritance of Yamunacharya's legacy. This gave him a clear mission: to systematize the theistic interpretation of Vedanta. This was not a philosophy created in a vacuum but the culmination of a long lineage of thinkers. His move to Srirangam put him at the heart of temple life, where the abstract philosophy had to meet the practical reality of ritual and community worship. This experience undoubtedly reinforced his view of God as a personal, supremely compassionate being worthy of devotion. His magnum opus, the *Sri Bhasya*, was the peak of this journey—a monumental, systematic refutation of Shankara's Advaita and the definitive statement of Vishishtadvaita. The period of exile in Karnataka was not a hiatus but a period of expansion, where he engaged with and triumphed over other philosophical schools, particularly Jainism. His return to Srirangam was a period of consolidation, where he established his philosophy as a powerful, living tradition through his writings, teachings, and institutional reforms.",
+"historicalContext": "Ramanuja lived during a period of intense philosophical and religious ferment in South India. The Bhakti movement, characterized by passionate, personal devotion to a deity, was sweeping across the subcontinent, challenging the more esoteric, knowledge-based (jnana) paths. The Tamil Alvars had already created a rich body of devotional poetry that was immensely popular. Philosophically, Shankara's Advaita Vedanta, with its radical non-dualism and declaration of the world as illusory, had become the dominant intellectual force in Hinduism. Ramanuja's work was a direct, powerful response to this context. He sought to give the Bhakti movement a philosophically sound and scripture-backed foundation, arguing that devotion was not merely an emotional outlet but the highest path to liberation, fully sanctioned by the Upanishads. Politically, the Chola empire was at its zenith, a powerful Hindu kingdom. However, sectarian tensions, particularly between Vaishnavites (worshippers of Vishnu) and Shaivites (worshippers of Shiva), were potent, as evidenced by Ramanuja's persecution by a Shaivite king. His subsequent success in the Hoysala kingdom shows how royal patronage was crucial for the establishment and spread of philosophical schools. The broader Indian context included political fragmentation into regional kingdoms and the increasing but still localized influence of early Islamic invasions in the north, though South India remained predominantly under Hindu rule.",
+
+"domainContributions": {
+"Logic": {
+"summary": "Ramanuja's logic and epistemology are fundamentally realist. He champions a comprehensive theory of knowledge (pramana) that accepts three valid sources: pratyaksha (perception), anumana (inference), and shabda (scriptural testimony), with scripture holding the ultimate, infallible authority on metaphysical matters. His most significant contribution is his critique of Shankara's epistemology, particularly the concept of 'sublation'—the idea that higher knowledge (of Brahman) cancels out or invalidates lower knowledge (of the world). For Ramanuja, knowledge is always of the real. Perception gives us knowledge of a real, pluralistic world. Inference allows us to reason about it. Scripture gives us knowledge of its ultimate ground, Brahman. These sources are complementary, not contradictory. His theory of 'Satkhyati' (theory of real apprehension) posits that all cognition apprehends reality; there is no 'error' in the sense of apprehending the non-existent. When we mistake a rope for a snake, we are perceiving the real 'snake-like' qualities present in the rope, not hallucinating a non-existent snake. This underpins his entire philosophy: the world we perceive is real because it is the body of Brahman. He also uniquely views Bhakti as an epistemic state, a direct awareness of Brahman's nature.",
+"keyPositions": [
+{
+"position": "Scripture (Shabda) is the supreme and infallible source of knowledge about ultimate reality.",
+"argument": "Human perception is limited by our senses and karma. Inference is flawed because it relies on perception and can lead to endless debate. Only the divine, eternal Vedas are free from defect and can provide certain knowledge of Brahman, which is beyond the reach of sense or reason alone.",
+"implications": ["The authority of tradition and revelation is paramount.", "Rationalistic philosophies that reject scripture are inherently flawed.", "Liberation requires understanding and following scriptural injunctions."]
+},
+{
+"position": "Consciousness (dharma-bhuta jnana) is always intentional and directed towards an object.",
+"argument": "Consciousness is a property or attribute of the soul, not its essence. It is always consciousness *of* something. The Advaita notion of pure, objectless consciousness is untenable and contradicts experience and scripture.",
+"implications": ["Rejects Advaita's concept of undifferentiated consciousness.", "Supports a realist view of the world and individual knowers.", "Forms the basis for his theory of Satkhyati."]
+}
+],
+"majorWorks": [
+{
+"title": "Sri Bhasya",
+"year": 1100,
+"relevantSections": ["Throughout the work, particularly critiques of Advaita epistemology"],
+"impact": "Systematically dismantled Advaita arguments regarding knowledge and reality, establishing a realist epistemology within Vedanta."
+},
+{
+"title": "Vedartha Sangraha",
+"year": 1090,
+"relevantSections": ["Sections on Pramanas (sources of knowledge)"],
+"impact": "Provides a concise overview of his epistemological framework and method of scriptural interpretation."
+}
+],
+"keyQuotes": [
+{
+"quote": "The entire universe of sentient and non-sentient beings is the body of Brahman.",
+"source": "Sri Bhasya",
+"context": "Summarizing his core metaphysical and ontological position.",
+"interpretation": "Means the world is not separate from or an illusion upon God. It is God's form, his attribute. Establishes inseparable but distinct existence (apṛthak-siddhi), where the body (world) is dependent on the soul (Brahman), validating the reality of perception."
+},
+{
+"quote": "Consciousness is always associated with an object.",
+"source": "Vedartha Sangraha",
+"context": "Discussing the nature of knowledge (jnana).",
+"interpretation": "Rejects the idea of attributeless consciousness, asserting that awareness is always *of* something, supporting his realist epistemology and critique of Advaita."
+}
+],
+"innovations": ["The theory of Satkhyati (all cognition is of the real).", "The doctrine of Apṛthak-siddhi (inseparable relation) to explain the body-soul relationship and the inseparability of attributes from substance.", "Bhakti as an epistemic state (Guna) of the soul's consciousness."],
+"arguments": {
+"for": ["The argument from scripture: The Vedas describe a personal creator God with attributes and a real creation.", "The argument from perception: Our senses consistently present a pluralistic world, to deny this is to deny a primary source of knowledge.", "The argument from the nature of consciousness: Consciousness is demonstrably intentional and always directed towards objects."],
+"against": ["Against Maya: The concept of an inexplicable, illusory force (maya) is philosophically incoherent and has no clear scriptural basis.", "Against Nirguna Brahman: An attributeless entity cannot be the subject of scripture, the object of devotion, or the basis for a theory of knowledge.", "Against Advaita's Sublation: The idea that 'higher' knowledge cancels 'lower' knowledge of the world is flawed, as knowledge is always of the real."]
+},
+"problems": [
+{
+"name": "The Problem of Error",
+"description": "How do we account for perceptual errors (like mistaking a rope for a snake) if all perception is of the real?",
+"solution": "His theory of Satkhyati. The error is not in *what* is perceived but in *how* it is categorized and acted upon. The rope contains elements of shininess and length common to snakes. The perception is real, but the subsequent action (fear, flight) is based on a practical misjudgment or incomplete knowledge. The 'error' is misinterpretation or incomplete apprehension, not apprehending the non-existent.",
+"critiques": ["Critics argue this stretches the definition of 'real' and doesn't adequately explain the subjective experience of seeing something that isn't there and the subsequent sublation of that 'false' perception upon correction."]
+},
+{
+"name": "The Source of Scriptural Authority",
+"description": "How is the authority of scripture established without circular reasoning?",
+"solution": "Scripture (Vedas) is beginningless, eternal, and self-validating (svatah pramanya). While initially accepted on faith, its truth is confirmed by the experience of those who follow its injunctions and attain liberation. Its authority is ultimately grounded in Brahman's knowledge.",
+"critiques": ["Relies on a concept of inherent validity and prior faith, which rationalists find unsatisfactory."]
+}
+]
+},
+"Aesthetics": {
+"summary": "For Ramanuja, aesthetics is deeply intertwined with theology and devotion. The beautiful is that which reveals the divine. The cosmos, in all its variety, order, and grandeur, is the glorious manifestation of Brahman (Vishnu) and his consort, Lakshmi. Therefore, aesthetic experience, whether contemplating nature, sacred art, or devotional poetry, is not mere sensual pleasure or illusion, but a form of divine communion and a pathway to understanding God's nature. The beauty and auspicious qualities (kalyana gunas) of God are real and infinite. The devotional poetry of the Alvars, rich in sensuous and natural imagery, is considered a high form of spiritual literature because it uses aesthetic means to evoke loving devotion (bhakti) for the supremely beautiful and perfect Lord. Aesthetic appreciation is integrated into the path of devotion itself; the contemplation of God's divine form and attributes is the ultimate aesthetic experience in liberation.",
+"keyPositions": [
+{
+"position": "All beauty and perfection in the universe are reflections of the infinite, perfect beauty and auspicious qualities (Kalyana Gunas) of God.",
+"argument": "Since the universe is the body of God (Sharira), its qualities are derived from and dependent on God, who is the source of all perfection. Scripture describes Brahman as possessing infinite, glorious attributes.",
+"implications": ["The material world is not a source of delusion to be shunned in its entirety, but a real manifestation of divine glory.", "Aesthetic experience can be a legitimate part of the spiritual path.", "The Alvars' devotional poetry, rich in aesthetic content, is validated as sacred scripture."]
+},
+{
+"position": "The contemplation of God's divine form and auspicious qualities is the highest aesthetic and spiritual experience.",
+"argument": "God is the embodiment of all perfection and bliss. Experiencing God directly through intense devotion (bhakti) culminates in the eternal, blissful contemplation of His form and attributes in Vaikuntha.",
+"implications": ["Liberation is not a state of impersonal merging, but eternal, conscious communion with a personal God.", "Aesthetic appreciation is elevated to a means of ultimate spiritual attainment."]
+}
+],
+"majorWorks": [
+{
+"title": "Sri Bhasya",
+"year": 1100,
+"relevantSections": ["Discussions on Brahman's auspicious qualities (Kalyana Gunas)"],
+"impact": "Provides the philosophical basis for understanding God as a being of infinite beauty and perfection, making aesthetic appreciation relevant to theology."
+},
+{
+"title": "Gadya Trayam",
+"year": 1100,
+"type": "hymns",
+"impact": "These devotional hymns express intense longing and aesthetic appreciation for God's divine form and qualities, providing a liturgical and experiential dimension to his philosophy."
+},
+{
+"title": "Commentaries on Alvar hymns (primarily through tradition)",
+"year": null,
+"impact": "Solidified the place of aesthetic and devotional poetry from the vernacular tradition within a rigorous philosophical and ritual framework, integrating aesthetic experience into orthodox worship."
+}
+],
+"keyQuotes": [
+{
+"quote": "The Lord's form is made of pure, transcendental goodness; it is the natural abode of all radiance, beauty, fragrance, tenderness, and loveliness.",
+"source": "Gadya Trayam (likely Saraṇāgati Gadya)",
+"context": "A devotional description of God's divine form.",
+"interpretation": "Highlights the reality and perfection of God's aesthetic attributes, central to devotional contemplation."
+}
+],
+"innovations": ["The philosophical validation of Bhakti poetry (Alvar hymns) as a means to liberation and an integral part of worship.", "Integrating the concept of God's 'Kalyana Gunas' as both moral and aesthetic perfections.", "Elevating the contemplation of God's form/qualities to the ultimate aesthetic experience in moksha."],
+"arguments": {
+"for": ["The argument from scripture: Vedas describe God with glorious attributes and a beautiful creation.", "The argument from experience: Human experience of beauty in the world resonates with a deeper, ultimate source of perfection.", "The argument from devotion: The Alvars' ecstatic aesthetic descriptions of God clearly lead to profound spiritual states."],
+"against": ["Against Advaita: Denies that worldly beauty or aesthetic experience is merely an illusory distraction from the pursuit of truth."]
+},
+"problems": [
+{
+"name": "Beauty in the Mundane",
+"description": "How can the beauty of ordinary or even impure objects reveal the divine if God is perfectly pure?",
+"solution": "Even mundane objects possess a spark of divine reality as they are part of Brahman's body. Their relative beauty is a pale reflection of God's infinite perfection. The perception of beauty depends on the devotee's purified vision, which sees the divine connection in all things.",
+"critiques": ["Still requires subjective interpretation and doesn't fully reconcile inherent imperfection/ugliness in the world with divine beauty."]
+}
+]
+},
+"Ethics": {
+"summary": "Ramanuja's ethics are theistic and deontological, centered on Dharma (duty), Bhakti (devotion), and Prapatti (surrender). The ultimate good is not self-realization as identity with an impersonal absolute, but attaining eternal, loving service to a personal God (Vishnu) in his heaven, Vaikuntha. Ethical life (Karma Yoga) is the means to purify the soul and make it a fit vessel for divine grace, involving performing one's prescribed social and ritual duties (varnashrama dharma) without attachment to results, seen as an offering to God. Compassion (daya), non-injury (ahimsa), truthfulness, and sense control are supreme virtues, reflecting God's own nature. The core of his soteriological ethics is Prapatti, absolute surrender to God's will and grace, considered the most direct path to liberation, accessible to anyone regardless of caste or learning, introducing a radical element of grace into Vedantic thought. Ethical actions, while having instrumental value for purification, also possess intrinsic value as expressions of devotion and conformity to God's perfect nature.",
+"keyPositions": [
+{
+"position": "The highest ethical path is Prapatti, the complete and unconditional surrender to God's grace, accessible to all.",
+"argument": "God is supremely compassionate (dayavan) and the ultimate refuge. Scriptural passages, particularly in the Bhagavad Gita (like 18.66), promise liberation to those who surrender fully to Him, bypassing the difficulties of other paths like pure knowledge or arduous ritual.",
+"implications": ["Democratizes the path to liberation, opening it to women, Shudras, and others traditionally excluded from Vedic rituals.", "Emphasizes divine grace over human effort alone.", "Provides a foundation for social reform and inclusivity."]
+},
+{
+"position": "Performing one's prescribed duties (Karma Yoga) without attachment to results is a necessary part of the ethical and spiritual life, preparing the soul for Bhakti.",
+"argument": "Scripture mandates various duties based on one's varna and ashrama. Neglecting these duties leads to demerit. Performing them as an offering to God purifies the mind and reduces ego, making one fit for deeper devotion.",
+"implications": ["Validates the varnashrama system as a framework for ethical action in the world (though spiritual liberation transcends these distinctions).", "Connects worldly action to spiritual progress.", "Rejects mere asceticism or withdrawal as the only ethical path."]
+},
+{
+"position": "Moral virtues like compassion, non-injury, truthfulness, and purity are intrinsically valuable and reflect the nature of God.",
+"argument": "God embodies infinite auspicious qualities, including supreme compassion. Emulating these qualities in our own lives is pleasing to God and aligns us with ultimate reality.",
+"implications": ["Provides a basis for universal ethics beyond specific ritual duties.", "Justifies social reform aimed at reducing suffering and promoting welfare."]
+}
+],
+"majorWorks": [
+{
+"title": "Bhagavad Gita Bhasya",
+"year": 1090,
+"relevantSections": ["Interpretations of Karma Yoga, Bhakti Yoga, and the final chapter (on Prapatti)"],
+"impact": "Reinterpreted the Gita to emphasize Bhakti and Prapatti as the central teachings, challenging the Advaitin emphasis on Jnana Yoga and establishing a scriptural basis for his ethical system."
+},
+{
+"title": "Gadya Trayam",
+"year": 1100,
+"type": "hymns",
+"impact": "Liturgical texts that encapsulate the doctrine of Prapatti, providing an accessible and emotionally resonant expression of his core ethical-soteriological principle."
+}
+],
+"keyQuotes": [
+{
+"quote": "Abandon all varieties of religion (dharmas) and just surrender unto Me (Prapadyē). I shall deliver you from all sinful reactions. Do not fear.",
+"source": "Bhagavad Gita 18.66 (Ramanuja's interpretation)",
+"context": "The climactic verse of the Bhagavad Gita.",
+"interpretation": "This verse is seen by Ramanuja as the 'Charama Shloka' (the ultimate verse), containing the essence of the easiest and most direct path to liberation: complete surrender to God's will and grace, superseding all other methods."
+}
+],
+"innovations": ["The doctrine of Prapatti as a universally accessible, independent means of moksha.", "Elevating Bhakti from a preparatory stage (as in some earlier traditions) to the ultimate means and end of liberation.", "Providing a philosophical justification for inclusivity in religious practice based on devotion and grace."],
+"arguments": {
+"for": ["The argument from divine compassion: A supremely merciful God must provide an accessible path to salvation for all souls, not just those capable of arduous philosophical study or ritual performance.", "The argument from scripture: Verses like Gita 18.66 explicitly promise salvation upon surrender.", "The argument from the nature of the soul: The soul's true nature is eternal servitude to God, making devotional service the most natural ethical expression."],
+"against": ["Against Advaita ethics: Rejects the idea that ethical duties are merely a preliminary step to be transcended by knowledge alone. Ethics are intrinsically valuable and part of the eternal relationship with God."]
+},
+"problems": [
+{
+"name": "Free Will vs. Grace (The 'Monkey' and 'Cat' theories)",
+"description": "If liberation is solely by God's grace (Prapatti), does human effort or free will matter? How does grace operate?",
+"solution": "This led to different interpretations within Sri Vaishnavism. The 'Monkey' school (Vadakalai) emphasizes the need for human effort ('the baby monkey clinging to its mother'). The 'Cat' school (Thenkalai) emphasizes God's irresistible grace ('the mother cat carrying the kitten'). Ramanuja's own position leans towards Prapatti being an act of the soul's will to surrender, which then triggers grace, suggesting a form of compatibilism where the initial choice to surrender is the soul's, but liberation is God's doing.",
+"critiques": ["The exact balance between divine grace and human free will/effort remains a subject of debate within the tradition."]
+}
+]
+},
+"Politics": {
+"summary": "Ramanuja was not a political philosopher theorizing about the state in the manner of Western thinkers. His 'politics' were religio-social and institutional, focusing on reforming and organizing the Sri Vaishnava community and temple life, which were significant centers of power and social organization in medieval South India. His key contribution was challenging the rigid caste system within the spiritual realm. While he upheld the social framework of varna dharma for worldly function, he insisted that spiritual eligibility, especially for Prapatti (surrender), was based solely on devotion (bhakti) to God, not on birth. He famously initiated individuals from lower castes into sacred mantras and roles within temple administration, creating more inclusive spiritual communities. His reforms at the Srirangam temple standardized rituals and administration, making the temple a more effective socio-religious institution. His period of exile and subsequent conversion of a Jain king highlights the close relationship between religious leaders and political power in his era.",
+"keyPositions": [
+{
+"position": "Spiritual eligibility for devotion and liberation is based on internal disposition (bhakti, prapatti), not external factors like birth or caste.",
+"argument": "Scripture, particularly the Bhagavad Gita, states that devotees from all backgrounds can attain the highest goal. God is equally available to all who surrender to Him.",
+"implications": ["Led to significant social reform within the Sri Vaishnava community.", "Challenged the exclusive access of Brahmins to religious knowledge and ritual.", "Broadened the appeal and reach of Vaishnavism among non-Brahmin populations."]
+},
+{
+"position": "Temples are vital centers for spiritual life, community organization, and social welfare.",
+"argument": "Temples are earthly abodes of God, where devotees can gather for worship, learning, and community support. Proper administration of temples is crucial for maintaining dharma and fostering devotion.",
+"implications": ["Ramanuja dedicated significant effort to temple management reform.", "Elevated the role of temples as socio-economic institutions, not just places of worship."]
+}
+],
+"majorWorks": [
+{
+"title": "Nityagrantha",
+"year": 1100,
+"type": "ritual manual",
+"impact": "Codified daily worship rituals in temples and homes, standardizing practice and providing guidelines for inclusivity (though its full authenticity is sometimes debated)."
+}
+],
+"innovations": ["Systematic reform and standardization of temple management and worship rituals.", "The institutionalization of spiritual inclusivity for lower castes by providing access to mantras and roles in temple service.", "Creating a strong, organized community structure around temple centers."],
+"arguments": {
+"for": ["The argument from divine nature: A supremely merciful God cannot exclude anyone based on birth.", "The argument from scripture: The Gita explicitly includes all who take refuge in God.", "The argument from Bhakti: True devotion transcends social distinctions."],
+"against": ["Against caste-based religious exclusivism: Argued that rigid application of caste rules in matters of spiritual eligibility contradicts the core message of devotion and grace."]
+},
+"problems": [
+{
+"name": "Reconciling Social Varna and Spiritual Equality",
+"description": "Ramanuja did not seek to abolish the caste system in its entirety but rather to remove barriers to religious practice. This created tension between the social hierarchy and the spiritual egalitarianism of Bhakti/Prapatti.",
+"solution": "He proposed that while social duties (varnashrama dharma) might be performed, spiritual identity as a devotee (bhagavata) supersedes caste identity in the eyes of God and among devotees. He created new roles within temple service accessible to all castes.",
+"critiques": ["Critics argue that his reforms were limited and did not fundamentally dismantle the social structure of caste."]
+}
+]
+},
+"Metaphysics": {
+"summary": "Ramanuja's metaphysics is Vishishtadvaita, or qualified non-dualism, his grand synthesis and most enduring contribution. It posits one ultimate Reality, Brahman, who is not an impersonal, attributeless (Nirguna) entity, but a personal God (Saguna Brahman, i.e., Vishnu) possessing infinite auspicious attributes. This single Reality is complex and 'qualified' by two other real and eternal entities: Cit (sentient beings, individual souls) and Acit (insentient matter, the phenomenal world). Cit and Acit are not illusions; they are the 'body' (sharira) of Brahman, who is their 'soul' (sharirin). They are eternally and inseparably connected to Brahman (apṛthak-siddhi) and completely dependent on Him, yet they retain their individual distinctness. The relationship is analogous to that of a soul and its body: the body is real and distinct but entirely dependent on the soul for its existence and function. Thus, Ramanuja affirms the reality of the One (Brahman) and the Many (souls and matter) simultaneously, providing a philosophical basis for a personal God who creates and sustains a real world and interacts with real individual souls. He explicitly refutes Shankara's Advaita arguments for Mayavada (world as illusion) and an attributeless Brahman.",
+"keyPositions": [
+{
+"position": "Reality consists of three eternal, real principles (Tattva-Traya): Ishvara (Brahman/God), Cit (individual souls), and Acit (insentient matter).",
+"argument": "Scripture consistently refers to a creator God, distinct individual souls, and a material world as real entities. These descriptions cannot be dismissed as referring to an illusory appearance. The Upanishads speak of Brahman as the inner controller (antaryamin) of both souls and matter, implying their distinct reality under His control.",
+"implications": ["Provides a foundation for a theistic philosophy where a personal God interacts with a real world and real individuals.", "Contradicts monistic views that deny the reality of plurality."]
+},
+{
+"position": "The relationship between Brahman and the universe (Cit and Acit) is one of Sharira-Shariri (Body-Soul).",
+"argument": "Scripture describes Brahman as pervading and controlling the universe from within, just as a soul pervades and controls a body. The universe is entirely dependent on Brahman for its existence, sustenance, and activity, just as a body depends on a soul. This explains the unity and diversity simultaneously – they are distinct but inseparable modes of the One.",
+"implications": ["Provides a compelling analogy for qualified non-dualism.", "Validates the world and souls as real attributes of God.", "Explains divine immanence."]
+},
+{
+"position": "Brahman (Ishvara) is Saguna (possesses infinite auspicious attributes) and is identified with Vishnu/Narayana.",
+"argument": "Upanishads describe Brahman using various qualities (knowledge, bliss, power, compassion, etc.). The term 'nirguna' in scripture denies negative or limiting qualities, not all attributes. Brahman as the object of devotion must possess knowable, lovable attributes.",
+"implications": ["Forms the basis for Bhakti (devotion) to a personal God.", "Directly challenges Advaita's concept of Nirguna Brahman.", "Identifies the ultimate reality with the personal deity of the Vaishnava tradition."]
+}
+],
+"majorWorks": [
+{
+"title": "Sri Bhasya",
+"year": 1100,
+"relevantSections": ["Entire work"],
+"impact": "The definitive text on Vishishtadvaita metaphysics, systematically interpreting the Brahma Sutras to establish the Tattva-Traya and Sharira-Shariri relationship."
+},
+{
+"title": "Vedartha Sangraha",
+"year": 1090,
+"relevantSections": ["Entire work"],
+"impact": "A concise exposition of his key metaphysical positions and method of Upanishadic interpretation, particularly on the meaning of key terms like Brahman, Atman, and the relationship between them."
+}
+],
+"keyQuotes": [
+{
+"quote": "The entire universe of sentient and non-sentient beings is the body of Brahman.",
+"source": "Sri Bhasya",
+"context": "Summarizing his core metaphysical and ontological position.",
+"interpretation": "This quote encapsulates the Sharira-Shariri relationship, explaining how Brahman is the soul of the cosmos, which is His body. It establishes the reality and dependence of the world and souls on God."
+},
+{
+"quote": "Brahman is without attributes (nirguna) means Brahman is without evil attributes.",
+"source": "Sri Bhasya",
+"context": "Interpreting scriptural passages that seem to describe an attributeless Brahman.",
+"interpretation": "Ramanuja's key hermeneutical principle for reconciling seemingly contradictory scriptural statements about Brahman, arguing that all positive descriptions are true, while negative descriptions only deny imperfections."
+}
+],
+"innovations": ["The Sharira-Shariri (body-soul) model as the central analogy for the God-universe-soul relationship.", "The concept of Apṛthak-siddhi (inseparable subsistence) to explain how attributes (souls and matter) are distinct from yet dependent on the substance (Brahman).", "The doctrine of Tattva-Traya (three real entities) as the basis of reality.", "A comprehensive Saguna Brahman doctrine as the ultimate reality."],
+"arguments": {
+"for": ["The argument from scripture: Reconciles all Vedic passages (both monistic and pluralistic) under the Vishishtadvaita framework.", "The argument from experience: Explains the reality of the world and individual consciousness as experienced.", "The argument from logic: Avoids the philosophical inconsistencies Ramanuja found in Advaita's concepts of Maya and Nirguna Brahman."],
+"against": ["Against Advaita's Mayavada: The world is not an illusion.", "Against Advaita's Nirguna Brahman: Brahman necessarily possesses infinite auspicious qualities.", "Against Dualism: Souls and matter are not independent entities, but modes dependent on Brahman."]
+},
+"problems": [
+{
+"name": "The Problem of Evil",
+"description": "If the world is Brahman's body and Brahman is perfectly good, how does evil and suffering exist in the world?",
+"solution": "Suffering arises from the karma of individual souls (Cit), who have real agency. While Brahman is the ultimate controller, He permits souls to act according to their free will, and the consequences of those actions (karma) determine their experiences. Brahman is the dispenser of the fruits of karma, but not the direct cause of suffering. The 'body' analogy implies dependence but not identity of nature; the imperfections of the body do not taint the soul (Brahman).",
+"critiques": ["Critics question whether this adequately absolves an omnipotent controller of responsibility for a universe containing suffering."]
+},
+{
+"name": "The Nature of Individual Distinction in Liberation",
+"description": "If souls are inseparable from Brahman, how do they retain distinct individuality in liberation? What prevents them from merging entirely?",
+"solution": "The relationship is one of mode (prakara) to substance (prakari). Just as a red flower is inseparable from redness but remains a distinct flower, a soul is inseparable from Brahman but remains a distinct conscious entity. Liberation involves the removal of ignorance and karma, allowing the soul to fully realize its nature as a dependent mode of God and eternally engage in service, but it does not destroy its distinct identity.",
+"critiques": ["Some philosophies argue that true liberation must involve complete identity or dissolution of individual distinction."]
+}
+]
+}
+},
+
+"fractillionTrace": {
+"coreBeliefs": [
+{
+"belief": "The highest reality is a personal God (Vishnu/Narayana) of infinite compassion and auspicious qualities.",
+"domain": "Metaphysics",
+"centrality": 100,
+"connections": ["Saguna Brahman", "Kalyana Gunas", "Bhakti", "Grace", "Prapatti", "Ishvara"]
+},
+{
+"belief": "The world and individual souls are real and form the body of God, being distinct but inseparably dependent.",
+"domain": "Metaphysics",
+"centrality": 98,
+"connections": ["Realism", "Cit", "Acit", "Sharira-Shariri", "Apṛthak-siddhi", "Tattva-Traya"]
+},
+{
+"belief": "Loving devotion (Bhakti) and complete surrender (Prapatti) to God are the primary means and the ultimate goal of liberation.",
+"domain": "Ethics/Soteriology",
+"centrality": 95,
+"connections": ["Moksha", "Grace", "Karma Yoga", "Jnana Yoga (subordinate)", "Prapatti"]
+},
+{
+"belief": "Scripture (Vedas) is the supreme authority for knowledge of ultimate reality, interpreted as a unified whole.",
+"domain": "Logic/Epistemology",
+"centrality": 90,
+"connections": ["Shabda Pramana", "Hermeneutics", "Vedanta", "Upanishads"]
+}
+],
+"questionChains": [
+{
+"startingQuestion": "What is the ultimate reality?",
+"chain": [
+{
+"question": "Is it an impersonal, attributeless absolute (Nirguna Brahman)?",
+"answer": "No, it is a personal God with infinite auspicious attributes (Saguna Brahman/Vishnu).",
+"leadsTo": "What is the nature of the world and individual souls in relation to this God?"
+},
+{
+"question": "What is the nature of the world and individual souls in relation to this God?",
+"answer": "They are real and eternally distinct entities, forming the body of God, dependent on Him but not identical to Him.",
+"leadsTo": "What is the path to liberation for individual souls?"
+}
+]
+},
+{
+"startingQuestion": "What is the path to liberation?",
+"chain": [
+{
+"question": "Is it through knowledge (Jnana Yoga) or devotion (Bhakti Yoga)?",
+"answer": "Primarily through devotion (Bhakti), which itself is a form of knowledge.",
+"leadsTo": "What is the highest form of this devotion?"
+},
+{
+"question": "What is the highest form of this devotion?",
+"answer": "Continuous loving meditation (Bhakti) culminating in total surrender (Prapatti).",
+"leadsTo": "Is this path open to everyone, regardless of social status?"
+},
+{
+"question": "Is this path open to everyone, regardless of social status?",
+"answer": "Yes, through Prapatti, liberation is accessible to all who sincerely surrender, transcending caste and other distinctions.",
+"leadsTo": "What then is the role of traditional duties and social order?"
+}
+]
+}
+],
+"conceptualNodes": [
+{
+"concept": "Vishishtadvaita",
+"definition": "Qualified Non-dualism: The doctrine that reality is a single, unified whole (Brahman) that is 'qualified' by real, distinct attributes (individual souls and matter).",
+"connectedConcepts": ["Sharira-Shariri", "Apṛthak-siddhi", "Saguna Brahman", "Tattva-Traya"],
+"strengthOfConnection": {"Sharira-Shariri": 100, "Apṛthak-siddhi": 95, "Saguna Brahman": 95, "Tattva-Traya": 90}
+},
+{
+"concept": "Sharira-Shariri Bhava",
+"definition": "The Body-Soul Relationship: The analogy used to describe the relation between Brahman (the soul/Sharirin) and the universe including souls and matter (His body/Sharira). The body is dependent on the soul but distinct from it.",
+"connectedConcepts": ["Vishishtadvaita", "Metaphysics", "Apṛthak-siddhi", "Cit", "Acit", "Brahman"],
+"strengthOfConnection": {"Vishishtadvaita": 100, "Metaphysics": 95, "Apṛthak-siddhi": 90, "Cit": 80, "Acit": 80, "Brahman": 95}
+},
+{
+"concept": "Prapatti",
+"definition": "Absolute Surrender: Unconditional self-surrender to God's grace as the most direct and accessible path to liberation.",
+"connectedConcepts": ["Bhakti", "Grace", "Moksha", "Ethics", "Soteriology"],
+"strengthOfConnection": {"Bhakti": 90, "Grace": 100, "Moksha": 95, "Ethics": 85, "Soteriology": 90}
+},
+{
+"concept": "Satkhyati",
+"definition": "Theory of Real Apprehension: The epistemological doctrine that all cognition apprehends reality, even in cases of perceived error, which is seen as incomplete or misinterpreted real data.",
+"connectedConcepts": ["Logic", "Epistemology", "Pratyaksha (Perception)", "Problem of Error", "Realism"],
+"strengthOfConnection": {"Logic": 95, "Epistemology": 95, "Pratyaksha (Perception)": 85, "Problem of Error": 90, "Realism": 90}
+}
+]
+},
+
+"influences": {
+"influencedBy": [
+{
+"philosopherId": "alvars",
+"natureOfInfluence": "Profound spiritual and poetic foundation; source of intense devotionalism.",
+"strengthOfInfluence": 90,
+"specificIdeas": ["The concept of God as a personal, loving being who is accessible through emotion and surrender.", "The validity and centrality of emotional devotion (bhakti) as a spiritual path.", "The use of vernacular language (Tamil) to express profound theological and devotional truths.", "The vision of spiritual inclusivity."],
+"evidenceQuotes": ["Ramanuja's system provides a philosophical and theological structure for the Alvars' emotional outpourings.", "He integrated the Alvars' Divya Prabandham into temple liturgy and philosophical discourse."],
+"conflictsResolved": ["He provided a Sanskrit-based, systematic philosophical structure (Vedanta) for the Alvars' devotional feelings, legitimizing them within the orthodox, Sanskritic tradition.", "Bridged the gap between vernacular devotionalism and elite philosophical scholasticism."]
+}
+,
+{
+"philosopherId": "yamunacharya",
+"natureOfInfluence": "Direct predecessor and ideological guide; outlined key Vishishtadvaita tenets and critiques of Advaita.",
+"strengthOfInfluence": 95,
+"specificIdeas": ["The core tenets of Vishishtadvaita philosophy.", "The systematic refutation of Shankara's Advaita Vedanta.", "The importance of synthesizing Bhakti and Vedanta.", "The mission to write a Vishishtadvaita commentary on the Brahma Sutras."],
+"evidenceQuotes": ["Ramanuja explicitly states that his philosophical project and the writing of the Sri Bhasya were undertaken to fulfill the wishes of Yamunacharya, his grand-preceptor."],
+"conflictsResolved": ["He completed the systematic exposition of the philosophy that Yamunacharya had outlined and began.", "Provided the detailed logical and scriptural arguments necessary to firmly establish Vishishtadvaita as a distinct school."]
+}
+],
+"influenced": [
+{
+"philosopherId": "madhvacharya",
+"natureOfInfluence": "Paved the way for further theistic Vedanta by providing a major critique of Advaita, but developed a distinct dualistic system.",
+"strengthOfInfluence": 70,
+"specificIdeas": ["Ramanuja's successful challenge to Advaita's dominance created the philosophical space for other theistic interpretations of Vedanta, including Madhva's Dvaita (dualism).", "Madhva engaged with Ramanuja's arguments, implicitly acknowledging their significance."],
+"conflictsCreated": ["Madhva critiqued Ramanuja's 'qualified' non-dualism, arguing it did not maintain a sufficient distinction between God, souls, and matter, and insisted on absolute dualism."]
+},
+{
+"philosopherId": null,
+"natureOfInfluence": "Founded and systematized the Sri Vaishnavism tradition, influencing its philosophy, rituals, and social structure.",
+"strengthOfInfluence": 100,
+"specificIdeas": ["The theological doctrines of Vishishtadvaita.", "The structure of worship and temple administration.", "Principles of spiritual inclusivity."],
+"evidenceQuotes": ["Ramanuja is considered the principal Acharya of Sri Vaishnavism."],
+"conflictsCreated": ["Differences in interpreting Ramanuja's teachings led to the development of distinct sub-schools (Vadakalai and Thenkalai) within Sri Vaishnavism, particularly concerning the role of grace and the nature of Prapatti."]
+},
+{
+"philosopherId": "ramananda",
+"natureOfInfluence": "Influenced later Bhakti movement leaders by popularizing a devotion-centered path and challenging caste barriers.",
+"strengthOfInfluence": 75,
+"specificIdeas": ["Emphasis on Bhakti as the primary means to liberation.", "Greater spiritual inclusivity, potentially influenced by Ramanuja's reforms."],
+"evidenceQuotes": ["Ramananda is considered a North Indian successor in the lineage of devotional reformers, drawing inspiration from the South Indian Bhakti traditions systematized by Ramanuja."],
+"conflictsCreated": []
+}
+]
+},
+
+"keyWorks": [
+{
+"title": "Sri Bhasya",
+"originalTitle": "Śrībhāṣya",
+"year": 1100,
+"type": "treatise",
+"structure": "A detailed, sequential commentary on Badarayana's Brahma Sutras, divided into four chapters (adhyayas) corresponding to the Sutras.",
+"summary": "The Sri Bhasya is Ramanuja's magnum opus and the foundational text of Vishishtadvaita philosophy. It is a commentary on the Brahma Sutras, which are themselves an aphoristic summary of the Upanishads. The work's primary goal is to demonstrate that a theistic, personalist interpretation of the Upanishads is the only one that is logically consistent and faithful to the source texts. Ramanuja painstakingly refutes the arguments of the dominant Advaita Vedanta school, particularly Shankara's interpretations. He argues against the concept of an attributeless Brahman, the doctrine of Maya (illusion), and the idea that knowledge alone leads to liberation. Instead, he establishes that Brahman is Vishnu, a God of infinite auspicious qualities; that the world and individual souls are real and constitute God's body; and that the ultimate path to liberation (moksha) is through loving devotion (bhakti) and surrender (prapatti), culminating in eternal, blissful service to God. The four chapters deal sequentially with the nature of Brahman, refutations of other systems, the means to liberation, and the nature of liberation itself.",
+"majorThemes": ["The reality of the world and souls", "The personal nature of God (Saguna Brahman)", "Bhakti and Prapatti as the primary means to moksha", "Critique of Advaita Vedanta (Mayavada, Nirguna Brahman)", "Interpretation of scripture (Upanishads, Brahma Sutras)"],
+"philosophicalInnovations": ["Systematization of Vishishtadvaita", "The Sharira-Shariri (soul-body) analogy for God and the world.", "The doctrine of Apṛthak-siddhi."],
+"historicalImpact": "It established Vishishtadvaita as one of the three major schools of Vedanta. It provided the intellectual backbone for the Sri Vaishnavism movement, which became a major religious force in India, influencing countless devotees and future philosophers.",
+"modernRelevance": "It continues to be the central philosophical text for millions of Sri Vaishnavas worldwide and offers a key theistic counterpoint to monistic and dualistic philosophies in Hindu thought. Its arguments regarding the nature of reality, God, and the soul remain subjects of contemporary philosophical and theological study."
+},
+{
+"title": "Vedartha Sangraha",
+"originalTitle": "Vedārthasaṅgrahaḥ",
+"year": 1090,
+"type": "treatise",
+"structure": "A self-contained prose work, structured as a debate, explaining the meaning of the Vedas.",
+"summary": "The Vedartha Sangraha (Summary of the Meaning of the Vedas) is a foundational work by Ramanuja that presents his interpretation of the principal Upanishads. It systematically explains his core philosophical tenets, particularly the concept of Vishishtadvaita (qualified non-dualism), the nature of Brahman, individual souls, and the material world, and their relationship. It serves as a concise, independent exposition of his system, laying out his hermeneutical principles for interpreting scripture and refuting opposing views, especially those of Advaita Vedanta. The work emphasizes the reality of distinctions within the ultimate unity and the nature of Brahman as a personal God (Saguna Brahman) who is the inner controller of all.",
+"majorThemes": ["Interpretation of the Upanishads", "The reality of Tattva-Traya (Ishvara, Cit, Acit)", "Sharira-Shariri relationship", "Refutation of Advaita", "Hermeneutics of scripture"],
+"philosophicalInnovations": ["Detailed exposition of Apṛthak-siddhi and Sāmānādhikaraṇya (co-ordinate predication)."],
+"historicalImpact": "Served as a clear and accessible introduction to Ramanuja's philosophy, complementing the more technical Sri Bhasya and helping to disseminate Vishishtadvaita ideas."
+},
+{
+"title": "Bhagavad Gita Bhasya",
+"originalTitle": "Bhagavadgītābhāṣya",
+"year": 1090,
+"type": "commentary",
+"structure": "Verse-by-verse commentary on the Bhagavad Gita.",
+"summary": "Ramanuja's commentary on the Bhagavad Gita interprets the text from the perspective of Vishishtadvaita Vedanta, emphasizing the importance of Bhakti Yoga (the path of devotion) as the primary and ultimate means to liberation (moksha). He integrates Karma Yoga (the path of action) and Jnana Yoga (the path of knowledge) as preparatory or subordinate to Bhakti. A key feature is his interpretation of the 'Charama Shloka' (18.66) as mandating Prapatti (complete surrender) to God. The commentary highlights God's accessibility, compassion, and the soul's nature as eternally dependent on and meant for service to God.",
+"majorThemes": ["Bhakti Yoga as the supreme path", "Prapatti (Surrender)", "Karma Yoga and Jnana Yoga as auxiliaries to Bhakti", "God's grace", "The nature of the soul and its goal (moksha)"],
+"historicalImpact": "Established a major tradition of interpreting the Bhagavad Gita as a fundamentally devotional text, significantly influencing later Bhakti movements and counteracting interpretations that prioritized knowledge or ritual alone."
+},
+{
+"title": "Gadya Trayam",
+"originalTitle": "Gadyatrayam",
+"year": 1100,
+"type": "hymns",
+"structure": "Three prose hymns: Saranagati Gadya, Sriranga Gadya, Vaikuntha Gadya.",
+"summary": "The Gadya Trayam (Three Prose Hymns) are devotional texts that express the core theological concepts of Vishishtadvaita in an emotionally resonant, liturgical format. The Saranagati Gadya is a moving prayer of complete surrender (Prapatti) to God. The Sriranga Gadya is a meditation on the divine form and abode of Lord Ranganatha (Vishnu) in Srirangam. The Vaikuntha Gadya describes the nature of Vaikuntha, God's eternal abode, and the state of the liberated soul in eternal service there. These works are central to Sri Vaishnava devotional practice and highlight the emphasis on grace, surrender, and the personal nature of God and liberation.",
+"majorThemes": ["Prapatti (Surrender)", "Divine Grace", "Nature of God's abode (Vaikuntha)", "The state of the liberated soul", "Emotional devotion"],
+"philosophicalInnovations": ["Providing a liturgical expression of philosophical tenets, making complex theology accessible to devotees.", "Emphasizing Prapatti as a direct, emotional act of faith."],
+"historicalImpact": "Became integral to Sri Vaishnava daily prayers and rituals, deeply shaping the devotional life of the tradition. While their full authenticity is sometimes debated by scholars, they undeniably represent key tenets and the devotional heart of the philosophy attributed to Ramanuja."
+}
+]
+}

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Pause, Play, ChevronUp, ChevronDown, Settings, X } from "lucide-react"
+import { Pause, Play, ChevronUp, ChevronDown, Settings, X, Network } from "lucide-react"
 import { Slider } from "@/components/ui/slider"
 import { Button } from "@/components/ui/button"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
@@ -16,6 +16,8 @@ interface ControlPanelProps {
   currentColor: string
   setCurrentColor: (value: string) => void
   predefinedColors: string[]
+  showConnections: boolean
+  setShowConnections: (value: boolean) => void
 }
 
 export default function ControlPanel({
@@ -26,6 +28,8 @@ export default function ControlPanel({
   currentColor,
   setCurrentColor,
   predefinedColors,
+  showConnections,
+  setShowConnections,
 }: ControlPanelProps) {
   const [isExpanded, setIsExpanded] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
@@ -110,6 +114,18 @@ export default function ControlPanel({
                     ))}
                   </div>
                 </div>
+
+                <div className="flex justify-between items-center">
+                  <span className="text-xs">Show Connections</span>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className={`h-8 w-8 p-0 ${showConnections ? 'bg-white/20' : ''}`} 
+                    onClick={() => setShowConnections(!showConnections)}
+                  >
+                    <Network size={14} />
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
@@ -181,6 +197,16 @@ export default function ControlPanel({
                 </div>
               </PopoverContent>
             </Popover>
+
+            <Button
+              variant="ghost"
+              size="icon"
+              className={`h-8 w-8 ${showConnections ? 'bg-white/20' : ''}`}
+              onClick={() => setShowConnections(!showConnections)}
+              title="Toggle Influence Connections"
+            >
+              <Network size={16} />
+            </Button>
           </motion.div>
 
           <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setIsExpanded(!isExpanded)}>

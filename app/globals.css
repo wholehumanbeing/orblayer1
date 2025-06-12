@@ -19,3 +19,92 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Glassmorphism utility classes */
+@layer utilities {
+  .glass {
+    @apply bg-white/[0.02] backdrop-blur-md border border-white/[0.08];
+  }
+  
+  .glass-dark {
+    @apply bg-black/20 backdrop-blur-lg border border-white/[0.05];
+  }
+  
+  .glass-hover {
+    @apply hover:bg-white/[0.04] hover:border-white/[0.12] transition-all duration-300;
+  }
+  
+  .glass-shadow {
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  }
+  
+  .glass-button {
+    @apply glass glass-hover rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200;
+    @apply hover:shadow-lg hover:shadow-blue-500/10 hover:scale-[1.02];
+  }
+  
+  .glass-panel {
+    @apply glass rounded-xl p-6 glass-shadow;
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  }
+  
+  .border-glow {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1) inset;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Typography enhancements */
+.heading-primary {
+  @apply text-2xl font-bold tracking-tight text-white/90 text-glow;
+}
+
+.heading-secondary {
+  @apply text-lg font-semibold tracking-tight text-white/80;
+}
+
+.text-muted {
+  @apply text-white/60;
+}
+
+/* Animation utilities */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}

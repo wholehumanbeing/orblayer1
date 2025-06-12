@@ -61,44 +61,55 @@ export default function InfoPanel({ slice, eras, onClose }: InfoPanelProps) {
 
   return (
     <motion.div
-      className="fixed top-4 left-4 z-50 bg-gray-900/95 backdrop-blur-md text-white rounded-lg shadow-2xl max-w-md w-full md:w-96"
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -20 }}
+      className="fixed top-4 left-4 z-50 glass-dark border border-white/10 text-white rounded-xl glass-shadow max-w-md w-full md:w-96"
+      initial={{ opacity: 0, x: -20, scale: 0.95 }}
+      animate={{ opacity: 1, x: 0, scale: 1 }}
+      exit={{ opacity: 0, x: -20, scale: 0.95 }}
+      transition={{ type: "spring", stiffness: 300, damping: 25 }}
     >
       <div className="p-6">
-        <div className="flex justify-between items-start mb-4">
+        <div className="flex justify-between items-start mb-5">
           <div>
-            <h2 className="text-2xl font-bold flex items-center gap-2">
-              <span className="w-4 h-4 rounded-full" style={{ backgroundColor: slice.color }} />
+            <h2 className="heading-primary flex items-center gap-3">
+              <span className="w-5 h-5 rounded-full border-glow animate-pulse-glow" style={{ backgroundColor: slice.color }} />
               {slice.name}
             </h2>
-            <p className="text-gray-400 text-sm mt-1">{slice.description}</p>
+            <p className="text-white/60 text-sm mt-2">{slice.description}</p>
           </div>
-          <Button variant="ghost" size="icon" onClick={onClose} className="h-8 w-8">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={onClose} 
+            className="h-8 w-8 glass-button hover:bg-white/10"
+          >
             <X size={16} />
           </Button>
         </div>
 
-        <div className="space-y-4">
-          <h3 className="text-lg font-semibold">Historical Development</h3>
+        <div className="space-y-5">
+          <h3 className="heading-secondary">Historical Development</h3>
           <div className="space-y-3">
             {eras.map((era) => (
-              <div key={era.name} className="border-l-2 border-gray-700 pl-4 hover:border-gray-500 transition-colors">
+              <motion.div 
+                key={era.name} 
+                className="glass p-4 rounded-lg border-l-4 hover:bg-white/[0.03] transition-all duration-300"
+                style={{ borderLeftColor: slice.color + '40' }}
+                whileHover={{ x: 4 }}
+              >
                 <div className="flex justify-between items-start">
-                  <h4 className="font-medium text-sm">{era.name}</h4>
-                  <span className="text-xs text-gray-500">{era.period}</span>
+                  <h4 className="font-semibold text-sm text-white/90">{era.name}</h4>
+                  <span className="text-xs text-white/40 font-medium">{era.period}</span>
                 </div>
-                <p className="text-xs text-gray-400 mt-1">
+                <p className="text-xs text-white/60 mt-2 leading-relaxed">
                   {content[era.name as keyof typeof content] || "Development in progress..."}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
-        <div className="mt-6 pt-4 border-t border-gray-800">
-          <p className="text-xs text-gray-500">
+        <div className="mt-6 pt-5 border-t border-white/10">
+          <p className="text-xs text-white/40 leading-relaxed">
             Navigate through time from the core outward. Each ring represents a major era in philosophical thought.
           </p>
         </div>

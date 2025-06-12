@@ -1,0 +1,9 @@
+Place your Open Graph image here with the filename: og-image.png
+
+Recommended specifications:
+- Dimensions: 1200x630 pixels
+- Format: PNG
+- File size: Under 8MB
+- Content: A visually appealing representation of the Philosophical Nexus with the title and perhaps a visualization of the orb or helix
+
+The image should represent the journey through 2,500 years of human thought and philosophical exploration. 
