@@ -1,0 +1,1356 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>The Philosophical Nexus</title> 
+    <style> 
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;700&display=swap'); 
+
+        :root { 
+            /* Spiral Dynamics Colors */ 
+            --beige: #f5e6b3; 
+            --purple: #8b5cf6; 
+            --red: #ef4444; 
+            --blue: #3b82f6; 
+            --orange: #f97316; 
+            --green: #10b981; 
+            --yellow: #eab308; 
+            --turquoise: #06b6d4; 
+             
+            /* UI Colors */ 
+            --background: #000000; 
+            --nebula-deep: #1a0b2e; 
+            --nebula-mid: #16213e; 
+            --nebula-light: #0f3460; 
+            --glass-bg: rgba(15, 23, 42, 0.4); 
+            --glass-border: rgba(255, 255, 255, 0.1); 
+            --glass-shadow: rgba(0, 0, 0, 0.25); 
+            --text-primary: rgba(255, 255, 255, 0.95); 
+            --text-secondary: rgba(255, 255, 255, 0.7); 
+            --text-muted: rgba(255, 255, 255, 0.5); 
+            --accent-glow: rgba(139, 92, 246, 0.3); 
+        } 
+
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        } 
+
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+            background: var(--background); 
+            color: var(--text-primary); 
+            overflow: hidden; 
+            height: 100vh; 
+        } 
+
+        #scene-container { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            z-index: 1; 
+        } 
+
+        /* Glassmorphism UI Panels */ 
+        .glass-panel { 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px); 
+            background: var(--glass-bg); 
+            border: 1px solid var(--glass-border); 
+            box-shadow: 0 8px 32px var(--glass-shadow); 
+            border-radius: 16px; 
+        } 
+
+        /* Left Sidebar */ 
+        #left-sidebar { 
+            position: fixed; 
+            left: 24px; 
+            top: 24px; 
+            bottom: 24px; 
+            width: 320px; 
+            z-index: 10; 
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+            display: flex; 
+            flex-direction: column; 
+        } 
+
+        #left-sidebar.collapsed { 
+            transform: translateX(-280px); 
+        } 
+
+        .sidebar-toggle { 
+            position: absolute; 
+            right: -40px; 
+            top: 50%; 
+            transform: translateY(-50%); 
+            width: 32px; 
+            height: 64px; 
+            background: var(--glass-bg); 
+            border: 1px solid var(--glass-border); 
+            border-left: none; 
+            border-radius: 0 12px 12px 0; 
+            backdrop-filter: blur(20px); 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: var(--text-secondary); 
+            transition: all 0.3s ease; 
+        } 
+
+        .sidebar-toggle:hover { 
+            background: var(--accent-glow); 
+            color: var(--text-primary); 
+        } 
+
+        .sidebar-content { 
+            padding: 32px 24px; 
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 32px; 
+        } 
+
+        .sidebar-header { 
+            text-align: center; 
+            border-bottom: 1px solid var(--glass-border); 
+            padding-bottom: 24px; 
+        } 
+
+        .sidebar-title { 
+            font-family: 'Space Grotesk', sans-serif; 
+            font-size: 28px; 
+            font-weight: 700; 
+            background: linear-gradient(135deg, var(--purple), var(--turquoise)); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            background-clip: text; 
+            margin-bottom: 8px; 
+        } 
+
+        .sidebar-subtitle { 
+            font-size: 14px; 
+            color: var(--text-muted); 
+            font-weight: 300; 
+            letter-spacing: 0.5px; 
+        } 
+
+        /* Search Bar */ 
+        .search-container { 
+            position: relative; 
+        } 
+
+        .search-input { 
+            width: 100%; 
+            padding: 16px 20px; 
+            background: rgba(255, 255, 255, 0.05); 
+            border: 1px solid var(--glass-border); 
+            border-radius: 12px; 
+            color: var(--text-primary); 
+            font-size: 16px; 
+            transition: all 0.3s ease; 
+        } 
+
+        .search-input:focus { 
+            outline: none; 
+            border-color: var(--purple); 
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1); 
+            background: rgba(255, 255, 255, 0.08); 
+        } 
+
+        .search-input::placeholder { 
+            color: var(--text-muted); 
+        } 
+
+        /* Timeline Section */ 
+        .timeline-section { 
+            background: rgba(255, 255, 255, 0.02); 
+            padding: 24px; 
+            border-radius: 12px; 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+        } 
+
+        .section-title { 
+            font-size: 14px; 
+            font-weight: 600; 
+            color: var(--text-secondary); 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            margin-bottom: 16px; 
+        } 
+
+        .timeline-container { 
+            position: relative; 
+            padding: 20px 0; 
+        } 
+
+        .timeline-slider { 
+            width: 100%; 
+            height: 2px; 
+            background: linear-gradient(90deg, var(--beige), var(--purple), var(--red), var(--blue), var(--orange), var(--green), var(--yellow), var(--turquoise)); 
+            border-radius: 2px; 
+            outline: none; 
+            cursor: pointer; 
+            -webkit-appearance: none; 
+            appearance: none; 
+        } 
+
+        .timeline-slider::-webkit-slider-thumb { 
+            -webkit-appearance: none; 
+            width: 20px; 
+            height: 20px; 
+            border-radius: 50%; 
+            background: linear-gradient(135deg, #ffffff, #e2e8f0); 
+            border: 2px solid var(--purple); 
+            cursor: pointer; 
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4); 
+            transition: all 0.2s ease; 
+        } 
+
+        .timeline-slider::-webkit-slider-thumb:hover { 
+            transform: scale(1.1); 
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6); 
+        } 
+
+        .timeline-label { 
+            text-align: center; 
+            margin-top: 12px; 
+            font-size: 16px; 
+            font-weight: 500; 
+            color: var(--text-primary); 
+        } 
+
+        /* Domain Filters */ 
+        .domain-filters { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 12px; 
+        } 
+
+        .domain-item { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 12px 16px; 
+            background: rgba(255, 255, 255, 0.02); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            border-radius: 8px; 
+            transition: all 0.3s ease; 
+            cursor: pointer; 
+        } 
+
+        .domain-item:hover { 
+            background: rgba(255, 255, 255, 0.05); 
+            border-color: rgba(255, 255, 255, 0.1); 
+        } 
+
+        .domain-item.active { 
+            border-color: var(--purple); 
+            background: rgba(139, 92, 246, 0.1); 
+        } 
+
+        .domain-label { 
+            font-size: 14px; 
+            font-weight: 500; 
+            color: var(--text-primary); 
+        } 
+
+        .domain-toggle { 
+            width: 44px; 
+            height: 24px; 
+            background: rgba(255, 255, 255, 0.1); 
+            border-radius: 12px; 
+            position: relative; 
+            transition: all 0.3s ease; 
+        } 
+
+        .domain-toggle.active { 
+            background: var(--purple); 
+        } 
+
+        .domain-toggle::after { 
+            content: ''; 
+            position: absolute; 
+            width: 20px; 
+            height: 20px; 
+            border-radius: 50%; 
+            background: white; 
+            top: 2px; 
+            left: 2px; 
+            transition: all 0.3s ease; 
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+        } 
+
+        .domain-toggle.active::after { 
+            transform: translateX(20px); 
+        } 
+
+        /* Right Panel */ 
+        #right-panel { 
+            position: fixed; 
+            right: 24px; 
+            top: 24px; 
+            bottom: 24px; 
+            width: 400px; 
+            z-index: 10; 
+            transform: translateX(100%); 
+            opacity: 0; 
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+        } 
+
+        #right-panel.visible { 
+            transform: translateX(0); 
+            opacity: 1; 
+        } 
+
+        .panel-content { 
+            padding: 32px 24px; 
+            height: 100%; 
+            display: flex; 
+            flex-direction: column; 
+        } 
+
+        .philosopher-header { 
+            border-bottom: 1px solid var(--glass-border); 
+            padding-bottom: 24px; 
+            margin-bottom: 24px; 
+        } 
+
+        .philosopher-name { 
+            font-family: 'Space Grotesk', sans-serif; 
+            font-size: 32px; 
+            font-weight: 700; 
+            margin-bottom: 8px; 
+            text-shadow: 0 0 20px rgba(139, 92, 246, 0.5); 
+        } 
+
+        .philosopher-meta { 
+            font-size: 14px; 
+            color: var(--text-secondary); 
+            margin-bottom: 16px; 
+        } 
+
+        .philosopher-bio { 
+            flex: 1; 
+            overflow-y: auto; 
+            padding-right: 8px; 
+            font-size: 16px; 
+            line-height: 1.6; 
+            color: var(--text-secondary); 
+        } 
+
+        .ai-features { 
+            margin-top: 24px; 
+            padding-top: 24px; 
+            border-top: 1px solid var(--glass-border); 
+        } 
+
+        .ai-button { 
+            width: 100%; 
+            padding: 16px 20px; 
+            background: linear-gradient(135deg, var(--purple), #6366f1); 
+            border: none; 
+            border-radius: 12px; 
+            color: white; 
+            font-size: 14px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+            margin-bottom: 12px; 
+            text-align: left; 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+        } 
+
+        .ai-button:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4); 
+        } 
+
+        .ai-response { 
+            margin-top: 16px; 
+            padding: 20px; 
+            background: rgba(0, 0, 0, 0.3); 
+            border-radius: 12px; 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            font-size: 14px; 
+            line-height: 1.5; 
+            color: var(--text-secondary); 
+            max-height: 200px; 
+            overflow-y: auto; 
+        } 
+
+        /* Custom Scrollbar */ 
+        ::-webkit-scrollbar { 
+            width: 6px; 
+        } 
+
+        ::-webkit-scrollbar-track { 
+            background: rgba(255, 255, 255, 0.05); 
+            border-radius: 3px; 
+        } 
+
+        ::-webkit-scrollbar-thumb { 
+            background: rgba(255, 255, 255, 0.2); 
+            border-radius: 3px; 
+        } 
+
+        ::-webkit-scrollbar-thumb:hover { 
+            background: rgba(255, 255, 255, 0.3); 
+        } 
+
+        /* Mobile Responsive */ 
+        @media (max-width: 768px) { 
+            #left-sidebar { 
+                width: calc(100% - 48px); 
+                left: 24px; 
+                right: 24px; 
+                top: 24px; 
+                bottom: auto; 
+                max-height: 60vh; 
+                transform: translateY(-100%); 
+            } 
+
+            #left-sidebar.visible { 
+                transform: translateY(0); 
+            } 
+
+            #right-panel { 
+                width: calc(100% - 48px); 
+                left: 24px; 
+                right: 24px; 
+                top: auto; 
+                bottom: 24px; 
+                max-height: 60vh; 
+            } 
+
+            .sidebar-toggle { 
+                display: none; 
+            } 
+        } 
+
+        /* Loading Animation */ 
+        .loading-text { 
+            opacity: 0.7; 
+            animation: pulse 2s infinite; 
+        } 
+
+        @keyframes pulse { 
+            0%, 100% { opacity: 0.7; } 
+            50% { opacity: 1; } 
+        } 
+
+        /* Smooth Animations */ 
+        * { 
+            transition: opacity 0.3s ease, transform 0.3s ease; 
+        } 
+    </style> 
+</head> 
+<body> 
+    <div id="scene-container"></div> 
+
+    <!-- Left Sidebar --> 
+    <div id="left-sidebar" class="glass-panel"> 
+        <div class="sidebar-toggle" onclick="toggleSidebar()"> 
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"> 
+                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/> 
+            </svg> 
+        </div> 
+         
+        <div class="sidebar-content"> 
+            <div class="sidebar-header"> 
+                <h1 class="sidebar-title">The Nexus</h1> 
+                <p class="sidebar-subtitle">Navigate the cosmic flow of philosophical thought</p> 
+            </div> 
+
+            <div class="search-container"> 
+                <input type="text" class="search-input" placeholder="Search philosophers..." id="search-input"> 
+            </div> 
+
+            <div class="timeline-section"> 
+                <div class="section-title">Timeline</div> 
+                <div class="timeline-container"> 
+                    <input type="range"  
+                           class="timeline-slider"  
+                           id="timeline-slider" 
+                           min="-700"  
+                           max="2100"  
+                           value="-700"  
+                           step="10"> 
+                    <div class="timeline-label" id="timeline-label">700 BCE</div> 
+                </div> 
+            </div> 
+
+            <div class="domain-filters" id="domain-filters"> 
+                <div class="section-title">Philosophical Domains</div> 
+                <!-- Domain filters will be generated by JavaScript --> 
+            </div> 
+        </div> 
+    </div> 
+
+    <!-- Right Panel --> 
+    <div id="right-panel" class="glass-panel"> 
+        <div class="panel-content"> 
+            <!-- Content will be dynamically generated --> 
+        </div> 
+    </div> 
+
+    <!-- Three.js and dependencies --> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script> 
+
+    <script> 
+        // --- CONFIGURATION & DATA --- 
+        const philosophers = [ 
+            { id: 'socrates', name: 'Socrates', birth: -470, death: -399, domain: 'ethics', influences: [], bio: "A classical Greek philosopher credited as one of the founders of Western philosophy. He is an enigmatic figure known chiefly through the accounts of later classical writers, especially the writings of his students Plato and Xenophon." }, 
+            { id: 'plato', name: 'Plato', birth: -428, death: -348, domain: 'metaphysics', influences: ['socrates'], bio: "An Athenian philosopher during the Classical period in Ancient Greece, founder of the Platonist school of thought, and the Academy, the first institution of higher learning in the Western world." }, 
+            { id: 'aristotle', name: 'Aristotle', birth: -384, death: -322, domain: 'ethics', influences: ['plato'], bio: "A Greek philosopher and polymath during the Classical period in ancient Greece. Taught by Plato, he was the founder of the Lyceum, the Peripatetic school of philosophy, and the Aristotelian tradition." }, 
+            { id: 'augustine', name: 'Augustine', birth: 354, death: 430, domain: 'metaphysics', influences: ['plato'], bio: "A theologian, philosopher, and the bishop of Hippo Regius in Numidia, Roman North Africa. His writings influenced the development of Western philosophy and Western Christianity." }, 
+            { id: 'aquinas', name: 'Thomas Aquinas', birth: 1225, death: 1274, domain: 'metaphysics', influences: ['aristotle', 'augustine'], bio: "An Italian Dominican friar, philosopher, Catholic priest, and Doctor of the Church. An immensely influential philosopher, theologian, and jurist in the tradition of scholasticism." }, 
+            { id: 'descartes', name: 'René Descartes', birth: 1596, death: 1650, domain: 'epistemology', influences: ['plato', 'aquinas'], bio: "A French philosopher, mathematician, and scientist. Dubbed the father of modern western philosophy, much of subsequent Western philosophy is a response to his writings." }, 
+            { id: 'locke', name: 'John Locke', birth: 1632, death: 1704, domain: 'politics', influences: ['descartes'], bio: "An English philosopher and physician, widely regarded as one of the most influential of Enlightenment thinkers and commonly known as the 'Father of Liberalism'." }, 
+            { id: 'hume', name: 'David Hume', birth: 1711, death: 1776, domain: 'epistemology', influences: ['locke'], bio: "A Scottish Enlightenment philosopher, historian, economist, and essayist, who is best known today for his highly influential system of philosophical empiricism, skepticism, and naturalism." }, 
+            { id: 'kant', name: 'Immanuel Kant', birth: 1724, death: 1804, domain: 'ethics', influences: ['hume', 'descartes'], bio: "A German philosopher and one of the central Enlightenment thinkers. Kant's comprehensive and systematic works in epistemology, metaphysics, ethics, and aesthetics have made him one of the most influential figures in modern Western philosophy." }, 
+            { id: 'nietzsche', name: 'Friedrich Nietzsche', birth: 1844, death: 1900, domain: 'aesthetics', influences: ['plato', 'kant'], bio: "A German philosopher, cultural critic, composer, poet, and philologist whose work has exerted a profound influence on modern intellectual history." }, 
+            { id: 'sartre', name: 'Jean-Paul Sartre', birth: 1905, death: 1980, domain: 'aesthetics', influences: ['nietzsche', 'kant'], bio: "A French philosopher, playwright, novelist, political activist, biographer, and literary critic. He was one of the key figures in the philosophy of existentialism and phenomenology." }, 
+        ]; 
+
+        const domains = { 
+            'ethics': { color: 0x3b82f6, name: 'Ethics', cssColor: '#3b82f6' }, 
+            'politics': { color: 0xef4444, name: 'Politics', cssColor: '#ef4444' }, 
+            'metaphysics': { color: 0x8b5cf6, name: 'Metaphysics', cssColor: '#8b5cf6' }, 
+            'epistemology': { color: 0xeab308, name: 'Epistemology', cssColor: '#eab308' }, 
+            'aesthetics': { color: 0xec4899, name: 'Aesthetics', cssColor: '#ec4899' } 
+        }; 
+
+        // Spiral Dynamics Colors (for timeline) 
+        const spiralColors = [ 
+            new THREE.Color(0xf5e6b3), // Beige 
+            new THREE.Color(0x8b5cf6), // Purple 
+            new THREE.Color(0xef4444), // Red 
+            new THREE.Color(0x3b82f6), // Blue 
+            new THREE.Color(0xf97316), // Orange 
+            new THREE.Color(0x10b981), // Green 
+            new THREE.Color(0xeab308), // Yellow 
+            new THREE.Color(0x06b6d4), // Turquoise 
+        ]; 
+
+        // --- SCENE VARIABLES --- 
+        let scene, camera, renderer, controls; 
+        let starfield, nebula, doubleHelix; 
+        let philosopherNodes = []; 
+        let connectionLines = new THREE.Group(); 
+        let hoveredNode = null; 
+        let selectedNode = null; 
+        let activeDomains = Object.keys(domains); 
+
+        const raycaster = new THREE.Raycaster(); 
+        const mouse = new THREE.Vector2(); 
+
+        // --- INITIALIZATION --- 
+        function init() { 
+            setupScene(); 
+            createCosmicBackground(); 
+            createDoubleHelix(); 
+            createPhilosopherNodes(); 
+            setupInteractions(); 
+            setupUI(); 
+            animate(); 
+        } 
+
+        function setupScene() { 
+            // Scene setup 
+            scene = new THREE.Scene(); 
+            scene.fog = new THREE.Fog(0x000000, 1000, 5000); 
+
+            // Camera 
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000); 
+            camera.position.set(0, 200, 800); 
+
+            // Renderer 
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); 
+            renderer.setSize(window.innerWidth, window.innerHeight); 
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); 
+            renderer.shadowMap.enabled = true; 
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
+            document.getElementById('scene-container').appendChild(renderer.domElement); 
+
+            // Controls 
+            controls = new THREE.OrbitControls(camera, renderer.domElement); 
+            controls.enableDamping = true; 
+            controls.dampingFactor = 0.05; 
+            controls.minDistance = 100; 
+            controls.maxDistance = 2000; 
+            controls.maxPolarAngle = Math.PI / 2 + 0.3; 
+            controls.minPolarAngle = Math.PI / 6; 
+
+            // Lighting 
+            const ambientLight = new THREE.AmbientLight(0x404040, 0.3); 
+            scene.add(ambientLight); 
+
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8); 
+            directionalLight.position.set(100, 200, 100); 
+            directionalLight.castShadow = true; 
+            scene.add(directionalLight); 
+
+            scene.add(connectionLines); 
+        } 
+
+        function createCosmicBackground() { 
+            // Deep space starfield 
+            const starGeometry = new THREE.BufferGeometry(); 
+            const starCount = 15000; 
+            const starPositions = new Float32Array(starCount * 3); 
+            const starColors = new Float32Array(starCount * 3); 
+            const starSizes = new Float32Array(starCount); 
+
+            for (let i = 0; i < starCount; i++) { 
+                // Positions 
+                starPositions[i * 3] = (Math.random() - 0.5) * 8000; 
+                starPositions[i * 3 + 1] = (Math.random() - 0.5) * 8000; 
+                starPositions[i * 3 + 2] = (Math.random() - 0.5) * 8000; 
+
+                // Colors (slight blue-white variations) 
+                const intensity = 0.5 + Math.random() * 0.5; 
+                starColors[i * 3] = intensity; 
+                starColors[i * 3 + 1] = intensity; 
+                starColors[i * 3 + 2] = intensity + Math.random() * 0.1; 
+
+                // Sizes 
+                starSizes[i] = Math.random() * 3 + 1; 
+            } 
+
+            starGeometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3)); 
+            starGeometry.setAttribute('color', new THREE.BufferAttribute(starColors, 3)); 
+            starGeometry.setAttribute('size', new THREE.BufferAttribute(starSizes, 1)); 
+
+            const starMaterial = new THREE.ShaderMaterial({ 
+                uniforms: { 
+                    time: { value: 0 } 
+                }, 
+                vertexShader: ` 
+                    attribute float size; 
+                    attribute vec3 color; 
+                    varying vec3 vColor; 
+                    uniform float time; 
+                     
+                    void main() { 
+                        vColor = color; 
+                        vec4 mvPosition = modelViewMatrix * vec4(position, 1.0); 
+                        gl_PointSize = size * (300.0 / -mvPosition.z) * (0.8 + 0.2 * sin(time + position.x * 0.01)); 
+                        gl_Position = projectionMatrix * mvPosition; 
+                    } 
+                `, 
+                fragmentShader: ` 
+                    varying vec3 vColor; 
+                     
+                    void main() { 
+                        float distanceToCenter = distance(gl_PointCoord, vec2(0.5)); 
+                        float alpha = 1.0 - smoothstep(0.0, 0.5, distanceToCenter); 
+                        gl_FragColor = vec4(vColor, alpha); 
+                    } 
+                `, 
+                transparent: true, 
+                blending: THREE.AdditiveBlending, 
+                vertexColors: true 
+            }); 
+
+            starfield = new THREE.Points(starGeometry, starMaterial); 
+            scene.add(starfield); 
+
+            // Nebula background 
+            createNebula(); 
+        } 
+
+        function createNebula() { 
+            const nebulaGeometry = new THREE.PlaneGeometry(6000, 6000); 
+            const nebulaMaterial = new THREE.ShaderMaterial({ 
+                uniforms: { 
+                    time: { value: 0 }, 
+                    resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) } 
+                }, 
+                vertexShader: ` 
+                    varying vec2 vUv; 
+                    void main() { 
+                        vUv = uv; 
+                        gl_Position = vec4(position, 1.0); 
+                    } 
+                `, 
+                fragmentShader: ` 
+                    uniform float time; 
+                    uniform vec2 resolution; 
+                    varying vec2 vUv; 
+                     
+                    // Noise function for nebula effect 
+                    vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; } 
+                    vec4 mod289(vec4 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; } 
+                    vec4 permute(vec4 x) { return mod289(((x*34.0)+1.0)*x); } 
+                    vec4 taylorInvSqrt(vec4 r) { return 1.79284291400159 - 0.85373472095314 * r; } 
+                     
+                    float snoise(vec3 v) { 
+                        const vec2 C = vec2(1.0/6.0, 1.0/3.0); 
+                        const vec4 D = vec4(0.0, 0.5, 1.0, 2.0); 
+                        vec3 i = floor(v + dot(v, C.yyy)); 
+                        vec3 x0 = v - i + dot(i, C.xxx); 
+                        vec3 g = step(x0.yzx, x0.xyz); 
+                        vec3 l = 1.0 - g; 
+                        vec3 i1 = min(g.xyz, l.zxy); 
+                        vec3 i2 = max(g.xyz, l.zxy); 
+                        vec3 x1 = x0 - i1 + C.xxx; 
+                        vec3 x2 = x0 - i2 + C.yyy; 
+                        vec3 x3 = x0 - D.yyy; 
+                        i = mod289(i); 
+                        vec4 p = permute(permute(permute(i.z + vec4(0.0, i1.z, i2.z, 1.0)) + i.y + vec4(0.0, i1.y, i2.y, 1.0)) + i.x + vec4(0.0, i1.x, i2.x, 1.0)); 
+                        float n_ = 0.142857142857; 
+                        vec3 ns = n_ * D.wyz - D.xzx; 
+                        vec4 j = p - 49.0 * floor(p * ns.z * ns.z); 
+                        vec4 x_ = floor(j * ns.z); 
+                        vec4 y_ = floor(j - 7.0 * x_); 
+                        vec4 x = x_ *ns.x + ns.yyyy; 
+                        vec4 y = y_ *ns.x + ns.yyyy; 
+                        vec4 h = 1.0 - abs(x) - abs(y); 
+                        vec4 b0 = vec4(x.xy, y.xy); 
+                        vec4 b1 = vec4(x.zw, y.zw); 
+                        vec4 s0 = floor(b0)*2.0 + 1.0; 
+                        vec4 s1 = floor(b1)*2.0 + 1.0; 
+                        vec4 sh = -step(h, vec4(0.0)); 
+                        vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy; 
+                        vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww; 
+                        vec3 p0 = vec3(a0.xy,h.x); 
+                        vec3 p1 = vec3(a0.zw,h.y); 
+                        vec3 p2 = vec3(a1.xy,h.z); 
+                        vec3 p3 = vec3(a1.zw,h.w); 
+                        vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3))); 
+                        p0 *= norm.x; 
+                        p1 *= norm.y; 
+                        p2 *= norm.z; 
+                        p3 *= norm.w; 
+                        vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0); 
+                        m = m * m; 
+                        return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3))); 
+                    } 
+                     
+                    void main() { 
+                        vec2 st = vUv * 2.0; 
+                        vec3 color = vec3(0.0); 
+                         
+                        // Multiple octaves of noise for complex nebula 
+                        float n1 = snoise(vec3(st * 0.5, time * 0.1)); 
+                        float n2 = snoise(vec3(st * 1.0, time * 0.05)) * 0.5; 
+                        float n3 = snoise(vec3(st * 2.0, time * 0.02)) * 0.25; 
+                         
+                        float noise = n1 + n2 + n3; 
+                         
+                        // Deep space colors 
+                        vec3 deepIndigo = vec3(0.1, 0.05, 0.2); 
+                        vec3 magenta = vec3(0.5, 0.1, 0.4); 
+                        vec3 darkTeal = vec3(0.05, 0.2, 0.3); 
+                         
+                        color = mix(deepIndigo, magenta, smoothstep(-0.5, 0.5, noise)); 
+                        color = mix(color, darkTeal, smoothstep(0.0, 1.0, noise * 0.5)); 
+                         
+                        gl_FragColor = vec4(color, 0.3); 
+                    } 
+                `, 
+                transparent: true, 
+                depthWrite: false 
+            }); 
+
+            nebula = new THREE.Mesh(nebulaGeometry, nebulaMaterial); 
+            nebula.position.z = -2000; 
+            scene.add(nebula); 
+        } 
+
+        function createDoubleHelix() { 
+            const helixGroup = new THREE.Group(); 
+             
+            // Create the path for the double helix 
+            const helixPoints1 = []; 
+            const helixPoints2 = []; 
+            const numPoints = 300; 
+            const height = 1000; 
+            const radius = 150; 
+            const turns = 6; 
+
+            for (let i = 0; i <= numPoints; i++) { 
+                const t = i / numPoints; 
+                const angle = t * Math.PI * 2 * turns; 
+                const y = (t - 0.5) * height; 
+                 
+                // First helix strand 
+                helixPoints1.push(new THREE.Vector3( 
+                    Math.cos(angle) * radius, 
+                    y, 
+                    Math.sin(angle) * radius 
+                )); 
+                 
+                // Second helix strand (offset by π) 
+                helixPoints2.push(new THREE.Vector3( 
+                    Math.cos(angle + Math.PI) * radius, 
+                    y, 
+                    Math.sin(angle + Math.PI) * radius 
+                )); 
+            } 
+
+            // Create the helix strands with obsidian material 
+            function createHelixStrand(points) { 
+                const curve = new THREE.CatmullRomCurve3(points); 
+                const geometry = new THREE.TubeGeometry(curve, 150, 8, 16, false); 
+                 
+                // Add progress attribute for Spiral Dynamics coloring 
+                const progress = new Float32Array(geometry.attributes.position.count); 
+                const positionAttribute = geometry.attributes.position; 
+                 
+                for (let i = 0; i < positionAttribute.count; i++) { 
+                    const y = positionAttribute.getY(i); 
+                    const t = (y + height/2) / height; 
+                    progress[i] = Math.max(0, Math.min(1, t)); 
+                } 
+                 
+                geometry.setAttribute('progress', new THREE.BufferAttribute(progress, 1)); 
+
+                const material = new THREE.ShaderMaterial({ 
+                    uniforms: { 
+                        time: { value: 0 }, 
+                        spiralColors: { value: spiralColors } 
+                    }, 
+                    vertexShader: ` 
+                        attribute float progress; 
+                        varying float vProgress; 
+                        varying vec3 vNormal; 
+                        varying vec3 vPosition; 
+                         
+                        void main() { 
+                            vProgress = progress; 
+                            vNormal = normalize(normalMatrix * normal); 
+                            vPosition = position; 
+                            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); 
+                        } 
+                    `, 
+                    fragmentShader: ` 
+                        uniform float time; 
+                        uniform vec3 spiralColors[8]; 
+                        varying float vProgress; 
+                        varying vec3 vNormal; 
+                        varying vec3 vPosition; 
+                         
+                        vec3 getSpiralColor(float t) { 
+                            float scaledT = t * 7.0; 
+                            int index = int(floor(scaledT)); 
+                            float frac = scaledT - float(index); 
+                             
+                            vec3 color1 = spiralColors[clamp(index, 0, 7)]; 
+                            vec3 color2 = spiralColors[clamp(index + 1, 0, 7)]; 
+                             
+                            return mix(color1, color2, frac); 
+                        } 
+                         
+                        void main() { 
+                            // Obsidian base color 
+                            vec3 obsidianColor = vec3(0.05, 0.05, 0.1); 
+                             
+                            // Internal energy flow 
+                            vec3 energyColor = getSpiralColor(vProgress); 
+                            float energyIntensity = 0.3 + 0.2 * sin(vProgress * 20.0 + time * 2.0); 
+                             
+                            // Fresnel effect for glass-like appearance 
+                            vec3 viewDirection = normalize(cameraPosition - vPosition); 
+                            float fresnel = pow(1.0 - abs(dot(viewDirection, vNormal)), 2.0); 
+                             
+                            // Combine obsidian with internal energy 
+                            vec3 finalColor = mix(obsidianColor, energyColor * energyIntensity, 0.6); 
+                            finalColor += fresnel * 0.1; 
+                             
+                            gl_FragColor = vec4(finalColor, 0.9); 
+                        } 
+                    `, 
+                    transparent: true, 
+                    side: THREE.DoubleSide 
+                }); 
+
+                return new THREE.Mesh(geometry, material); 
+            } 
+
+            const strand1 = createHelixStrand(helixPoints1); 
+            const strand2 = createHelixStrand(helixPoints2); 
+
+            helixGroup.add(strand1); 
+            helixGroup.add(strand2); 
+
+            doubleHelix = helixGroup; 
+            scene.add(doubleHelix); 
+        } 
+
+        function createPhilosopherNodes() { 
+            philosophers.forEach(philosopher => { 
+                const position = getPositionOnHelix(philosopher.birth); 
+                const domainInfo = domains[philosopher.domain]; 
+                 
+                // Create the main node 
+                const nodeGeometry = new THREE.SphereGeometry(6, 32, 32); 
+                const nodeMaterial = new THREE.MeshPhongMaterial({ 
+                    color: new THREE.Color(domainInfo.color), 
+                    emissive: new THREE.Color(domainInfo.color).multiplyScalar(0.2), 
+                    shininess: 100, 
+                    transparent: true, 
+                    opacity: 0.9 
+                }); 
+                 
+                const node = new THREE.Mesh(nodeGeometry, nodeMaterial); 
+                node.position.copy(position); 
+                node.castShadow = true; 
+                node.receiveShadow = true; 
+                 
+                // Create corona effect 
+                const coronaGeometry = new THREE.SphereGeometry(12, 32, 32); 
+                const coronaMaterial = new THREE.ShaderMaterial({ 
+                    uniforms: { 
+                        time: { value: 0 }, 
+                        color: { value: new THREE.Color(domainInfo.color) } 
+                    }, 
+                    vertexShader: ` 
+                        varying vec3 vNormal; 
+                        varying vec3 vPosition; 
+                         
+                        void main() { 
+                            vNormal = normalize(normalMatrix * normal); 
+                            vPosition = position; 
+                            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); 
+                        } 
+                    `, 
+                    fragmentShader: ` 
+                        uniform float time; 
+                        uniform vec3 color; 
+                        varying vec3 vNormal; 
+                        varying vec3 vPosition; 
+                         
+                        void main() { 
+                            vec3 viewDirection = normalize(cameraPosition - vPosition); 
+                            float fresnel = pow(1.0 - abs(dot(viewDirection, vNormal)), 3.0); 
+                            float pulse = 0.8 + 0.2 * sin(time * 3.0); 
+                             
+                            gl_FragColor = vec4(color, fresnel * pulse * 0.5); 
+                        } 
+                    `, 
+                    transparent: true, 
+                    blending: THREE.AdditiveBlending, 
+                    side: THREE.BackSide 
+                }); 
+                 
+                const corona = new THREE.Mesh(coronaGeometry, coronaMaterial); 
+                node.add(corona); 
+                 
+                // Store philosopher data 
+                node.userData = philosopher; 
+                philosopherNodes.push(node); 
+                scene.add(node); 
+            }); 
+        } 
+
+        function getPositionOnHelix(year) { 
+            const minYear = -700; 
+            const maxYear = 2100; 
+            const t = (year - minYear) / (maxYear - minYear); 
+             
+            const height = 1000; 
+            const radius = 150; 
+            const turns = 6; 
+            const angle = t * Math.PI * 2 * turns; 
+            const y = (t - 0.5) * height; 
+             
+            return new THREE.Vector3( 
+                Math.cos(angle) * radius, 
+                y, 
+                Math.sin(angle) * radius 
+            ); 
+        } 
+
+        function setupInteractions() { 
+            // Mouse events 
+            renderer.domElement.addEventListener('mousemove', onMouseMove); 
+            renderer.domElement.addEventListener('click', onMouseClick); 
+            window.addEventListener('resize', onWindowResize); 
+        } 
+
+        function onMouseMove(event) { 
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1; 
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1; 
+             
+            raycaster.setFromCamera(mouse, camera); 
+            const intersects = raycaster.intersectObjects(philosopherNodes.filter(node => node.visible)); 
+             
+            if (intersects.length > 0) { 
+                const newHovered = intersects[0].object; 
+                if (hoveredNode !== newHovered) { 
+                    if (hoveredNode && hoveredNode !== selectedNode) { 
+                        gsap.to(hoveredNode.scale, { x: 1, y: 1, z: 1, duration: 0.3 }); 
+                    } 
+                    hoveredNode = newHovered; 
+                    if (hoveredNode !== selectedNode) { 
+                        gsap.to(hoveredNode.scale, { x: 1.3, y: 1.3, z: 1.3, duration: 0.3 }); 
+                    } 
+                    document.body.style.cursor = 'pointer'; 
+                } 
+            } else { 
+                if (hoveredNode && hoveredNode !== selectedNode) { 
+                    gsap.to(hoveredNode.scale, { x: 1, y: 1, z: 1, duration: 0.3 }); 
+                } 
+                hoveredNode = null; 
+                document.body.style.cursor = 'default'; 
+            } 
+        } 
+
+        function onMouseClick(event) { 
+            if (event.target.closest('.glass-panel')) return; 
+             
+            raycaster.setFromCamera(mouse, camera); 
+            const intersects = raycaster.intersectObjects(philosopherNodes.filter(node => node.visible)); 
+             
+            if (intersects.length > 0) { 
+                const clickedNode = intersects[0].object; 
+                if (selectedNode !== clickedNode) { 
+                    if (selectedNode) { 
+                        gsap.to(selectedNode.scale, { x: 1, y: 1, z: 1, duration: 0.3 }); 
+                    } 
+                    selectedNode = clickedNode; 
+                    showPhilosopherPanel(selectedNode.userData); 
+                    showConnections(selectedNode); 
+                    focusOnNode(selectedNode); 
+                } 
+            } else { 
+                if (selectedNode) { 
+                    gsap.to(selectedNode.scale, { x: 1, y: 1, z: 1, duration: 0.3 }); 
+                    selectedNode = null; 
+                    hidePhilosopherPanel(); 
+                    hideConnections(); 
+                } 
+            } 
+        } 
+
+        function focusOnNode(node) { 
+            const targetPosition = node.position.clone(); 
+            const offset = new THREE.Vector3(100, 50, 200); 
+            const newCameraPosition = targetPosition.clone().add(offset); 
+             
+            gsap.to(controls.target, { 
+                x: targetPosition.x, 
+                y: targetPosition.y, 
+                z: targetPosition.z, 
+                duration: 1.5, 
+                ease: "power2.inOut" 
+            }); 
+             
+            gsap.to(camera.position, { 
+                x: newCameraPosition.x, 
+                y: newCameraPosition.y, 
+                z: newCameraPosition.z, 
+                duration: 1.5, 
+                ease: "power2.inOut" 
+            }); 
+        } 
+
+        function showConnections(node) { 
+            hideConnections(); 
+             
+            if (!node || !node.userData.influences) return; 
+             
+            const startPos = node.position; 
+            node.userData.influences.forEach(influenceId => { 
+                const influenceNode = philosopherNodes.find(n => n.userData.id === influenceId); 
+                if (influenceNode && influenceNode.visible) { 
+                    const endPos = influenceNode.position; 
+                     
+                    // Create curved connection line 
+                    const curve = new THREE.QuadraticBezierCurve3( 
+                        startPos, 
+                        new THREE.Vector3( 
+                            (startPos.x + endPos.x) / 2 + 50, 
+                            (startPos.y + endPos.y) / 2 + 100, 
+                            (startPos.z + endPos.z) / 2 + 50 
+                        ), 
+                        endPos 
+                    ); 
+                     
+                    const points = curve.getPoints(50); 
+                    const geometry = new THREE.BufferGeometry().setFromPoints(points); 
+                    const material = new THREE.LineBasicMaterial({ 
+                        color: 0x00ffff, 
+                        transparent: true, 
+                        opacity: 0.6, 
+                        linewidth: 2 
+                    }); 
+                     
+                    const line = new THREE.Line(geometry, material); 
+                    connectionLines.add(line); 
+                } 
+            }); 
+        } 
+
+        function hideConnections() { 
+            connectionLines.clear(); 
+        } 
+
+        function showPhilosopherPanel(philosopher) { 
+            const rightPanel = document.getElementById('right-panel'); 
+            const domainInfo = domains[philosopher.domain]; 
+             
+            rightPanel.innerHTML = ` 
+                <div class="panel-content"> 
+                    <div class="philosopher-header"> 
+                        <h2 class="philosopher-name" style="color: ${domainInfo.cssColor}"> 
+                            ${philosopher.name} 
+                        </h2> 
+                        <div class="philosopher-meta"> 
+                            ${philosopher.birth} – ${philosopher.death} |  
+                            <span style="color: ${domainInfo.cssColor}">${domainInfo.name}</span> 
+                        </div> 
+                    </div> 
+                    <div class="philosopher-bio"> 
+                        ${philosopher.bio} 
+                    </div> 
+                    <div class="ai-features"> 
+                        <button class="ai-button" onclick="explainPhilosopher('${philosopher.id}')"> 
+                            ✨ Explain Like I'm 5 
+                        </button> 
+                        <button class="ai-button" onclick="showCompareInput('${philosopher.id}')"> 
+                            ✨ Compare with... 
+                        </button> 
+                        <div id="compare-input" style="display: none; margin-top: 12px;"> 
+                            <input type="text"  
+                                   id="compare-philosopher"  
+                                   class="search-input"  
+                                   placeholder="Enter philosopher name..."  
+                                   style="margin-bottom: 12px;"> 
+                            <button class="ai-button" onclick="comparePhilosophers('${philosopher.id}')"> 
+                                Compare 
+                            </button> 
+                        </div> 
+                        <div id="ai-response" class="ai-response" style="display: none;"> 
+                            <!-- AI responses will appear here --> 
+                        </div> 
+                    </div> 
+                </div> 
+            `; 
+             
+            rightPanel.classList.add('visible'); 
+        } 
+
+        function hidePhilosopherPanel() { 
+            const rightPanel = document.getElementById('right-panel'); 
+            rightPanel.classList.remove('visible'); 
+        } 
+
+        function setupUI() { 
+            setupDomainFilters(); 
+            setupTimelineSlider(); 
+            setupSearch(); 
+        } 
+
+        function setupDomainFilters() { 
+            const container = document.getElementById('domain-filters'); 
+             
+            Object.entries(domains).forEach(([key, domain]) => { 
+                const domainItem = document.createElement('div'); 
+                domainItem.className = 'domain-item active'; 
+                domainItem.innerHTML = ` 
+                    <span class="domain-label">${domain.name}</span> 
+                    <div class="domain-toggle active" data-domain="${key}"></div> 
+                `; 
+                 
+                domainItem.addEventListener('click', () => toggleDomain(key, domainItem)); 
+                container.appendChild(domainItem); 
+            }); 
+        } 
+
+        function toggleDomain(domainKey, element) { 
+            const toggle = element.querySelector('.domain-toggle'); 
+            const isActive = toggle.classList.contains('active'); 
+             
+            if (isActive) { 
+                toggle.classList.remove('active'); 
+                element.classList.remove('active'); 
+                activeDomains = activeDomains.filter(d => d !== domainKey); 
+            } else { 
+                toggle.classList.add('active'); 
+                element.classList.add('active'); 
+                activeDomains.push(domainKey); 
+            } 
+             
+            filterNodes(); 
+        } 
+
+        function setupTimelineSlider() { 
+            const slider = document.getElementById('timeline-slider'); 
+            const label = document.getElementById('timeline-label'); 
+             
+            slider.addEventListener('input', (e) => { 
+                const year = parseInt(e.target.value); 
+                const displayYear = Math.abs(year); 
+                const era = year < 0 ? 'BCE' : 'CE'; 
+                label.textContent = `${displayYear} ${era}`; 
+                 
+                // Move camera to timeline position 
+                const targetPosition = getPositionOnHelix(year); 
+                 
+                gsap.to(controls.target, { 
+                    x: targetPosition.x, 
+                    y: targetPosition.y, 
+                    z: targetPosition.z, 
+                    duration: 0.8, 
+                    ease: "power2.out" 
+                }); 
+                 
+                gsap.to(camera.position, { 
+                    x: targetPosition.x + 200, 
+                    y: targetPosition.y + 100, 
+                    z: targetPosition.z + 300, 
+                    duration: 0.8, 
+                    ease: "power2.out" 
+                }); 
+            }); 
+        } 
+
+        function setupSearch() { 
+            const searchInput = document.getElementById('search-input'); 
+            searchInput.addEventListener('input', filterNodes); 
+        } 
+
+        function filterNodes() { 
+            const searchTerm = document.getElementById('search-input').value.toLowerCase(); 
+             
+            philosopherNodes.forEach(node => { 
+                const philosopher = node.userData; 
+                const matchesDomain = activeDomains.includes(philosopher.domain); 
+                const matchesSearch = philosopher.name.toLowerCase().includes(searchTerm); 
+                 
+                node.visible = matchesDomain && matchesSearch; 
+            }); 
+             
+            // Update connections if a node is selected 
+            if (selectedNode) { 
+                showConnections(selectedNode); 
+            } 
+        } 
+
+        function onWindowResize() { 
+            camera.aspect = window.innerWidth / window.innerHeight; 
+            camera.updateProjectionMatrix(); 
+            renderer.setSize(window.innerWidth, window.innerHeight); 
+             
+            if (nebula) { 
+                nebula.material.uniforms.resolution.value.set(window.innerWidth, window.innerHeight); 
+            } 
+        } 
+
+        function animate() { 
+            requestAnimationFrame(animate); 
+             
+            const time = performance.now() * 0.001; 
+             
+            // Update starfield 
+            if (starfield) { 
+                starfield.material.uniforms.time.value = time; 
+                starfield.rotation.y += 0.0001; 
+            } 
+             
+            // Update nebula 
+            if (nebula) { 
+                nebula.material.uniforms.time.value = time; 
+            } 
+             
+            // Update helix 
+            if (doubleHelix) { 
+                doubleHelix.children.forEach(strand => { 
+                    strand.material.uniforms.time.value = time; 
+                }); 
+            } 
+             
+            // Update philosopher nodes 
+            philosopherNodes.forEach(node => { 
+                if (node.children[0]) { // Corona 
+                    node.children[0].material.uniforms.time.value = time; 
+                } 
+                 
+                // Pulsing effect for selected node 
+                if (selectedNode === node) { 
+                    const pulse = 1 + 0.1 * Math.sin(time * 4); 
+                    node.children[0].scale.setScalar(pulse); 
+                } 
+            }); 
+             
+            controls.update(); 
+            renderer.render(scene, camera); 
+        } 
+
+        // --- UI HELPER FUNCTIONS --- 
+        function toggleSidebar() { 
+            const sidebar = document.getElementById('left-sidebar'); 
+            sidebar.classList.toggle('collapsed'); 
+        } 
+
+        async function explainPhilosopher(philosopherId) { 
+            const philosopher = philosophers.find(p => p.id === philosopherId); 
+            const responseDiv = document.getElementById('ai-response'); 
+             
+            responseDiv.style.display = 'block'; 
+            responseDiv.innerHTML = '<div class="loading-text">Thinking...</div>'; 
+             
+            // Simulate AI response 
+            setTimeout(() => { 
+                responseDiv.innerHTML = ` 
+                    <strong>${philosopher.name} in Simple Terms:</strong><br><br> 
+                    Imagine ${philosopher.name} as a person who asked really big questions about life.  
+                    They wondered about things like "What makes something right or wrong?" and  
+                    "How do we know what's true?" Their ideas helped shape how we think about  
+                    the world today. Think of them as a really smart person from long ago who  
+                    gave us tools to understand ourselves and our world better. 
+                `; 
+            }, 2000); 
+        } 
+
+        function showCompareInput(philosopherId) { 
+            const compareInput = document.getElementById('compare-input'); 
+            compareInput.style.display = compareInput.style.display === 'none' ? 'block' : 'none'; 
+        } 
+
+        async function comparePhilosophers(philosopherId) { 
+            const philosopher1 = philosophers.find(p => p.id === philosopherId); 
+            const philosopher2Name = document.getElementById('compare-philosopher').value; 
+            const responseDiv = document.getElementById('ai-response'); 
+             
+            if (!philosopher2Name.trim()) { 
+                responseDiv.style.display = 'block'; 
+                responseDiv.innerHTML = 'Please enter a philosopher name to compare.'; 
+                return; 
+            } 
+             
+            responseDiv.style.display = 'block'; 
+            responseDiv.innerHTML = '<div class="loading-text">Comparing...</div>'; 
+             
+            // Simulate AI comparison 
+            setTimeout(() => { 
+                responseDiv.innerHTML = ` 
+                    <strong>${philosopher1.name} vs ${philosopher2Name}:</strong><br><br> 
+                    <strong>Similarity:</strong> Both philosophers grappled with fundamental questions  
+                    about human existence and knowledge.<br><br> 
+                    <strong>Key Difference:</strong> While ${philosopher1.name} focused on ${domains[philosopher1.domain].name.toLowerCase()},  
+                    ${philosopher2Name} likely had different philosophical priorities and methods of inquiry. 
+                    <br><br> 
+                    <em>Note: This is a simplified comparison. For detailed analysis, consult philosophical texts.</em> 
+                `; 
+            }, 2500); 
+        } 
+
+        // --- INITIALIZATION --- 
+        window.addEventListener('load', init); 
+        window.addEventListener('resize', onWindowResize); 
+
+    </script> 
+</body> 
+</html>

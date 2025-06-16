@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { 
   ChevronRight, 
@@ -20,78 +20,42 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Slider } from "@/components/ui/slider"
 import { 
   domainColors, 
-  timePeriods,
-  allPhilosophers
+  timePeriods
 } from "@/app/data/allPhilosophers"
 import SearchResults from "./SearchResults"
-import type { PhilosopherData } from "@/app/types/philosopher"
+import { usePhilosopherStore } from '@/src/store/philosopherStore'
+import { useFilterStore } from '@/src/store/filterStore'
+import { useSceneStore } from '@/src/store/sceneStore'
 
-interface SidebarProps {
-  // View mode
-  viewMode: 'orb' | 'helix'
-  onViewModeChange: (mode: 'orb' | 'helix') => void
-
-  // Connection controls
-  showConnections: boolean
-  onShowConnectionsChange: (show: boolean) => void
-
-  // Animation controls
-  isPaused: boolean
-  onPausedChange: (paused: boolean) => void
-  speed: number
-  onSpeedChange: (speed: number) => void
-
-  // Timeline controls
-  timeRange: [number, number]
-  onTimeRangeChange: (range: [number, number]) => void
-  minYear: number
-  maxYear: number
-
-  // Filter controls
-  selectedEras: string[]
-  onSelectedErasChange: (eras: string[]) => void
-  selectedDomains: string[]
-  onSelectedDomainsChange: (domains: string[]) => void
-
-  // Search
-  searchQuery: string
-  onSearchQueryChange: (query: string) => void
-
-  // Visibility count
-  visiblePhilosophersCount: number
-  totalPhilosophersCount: number
-
-  // Philosopher selection
-  onSelectPhilosopher: (philosopher: PhilosopherData) => void
-}
-
-export default function Sidebar({
-  viewMode,
-  onViewModeChange,
-  showConnections,
-  onShowConnectionsChange,
-  isPaused,
-  onPausedChange,
-  speed,
-  onSpeedChange,
-  timeRange,
-  onTimeRangeChange,
-  minYear,
-  maxYear,
-  selectedEras,
-  onSelectedErasChange,
-  selectedDomains,
-  onSelectedDomainsChange,
-  searchQuery,
-  onSearchQueryChange,
-  visiblePhilosophersCount,
-  totalPhilosophersCount,
-  onSelectPhilosopher
-}: SidebarProps) {
+export default function Sidebar() {
+  const { philosophers, selectPhilosopher } = usePhilosopherStore()
+  const filters = useFilterStore()
+  const { viewMode, setViewMode, isPaused, setIsPaused, speed, setSpeed } = useSceneStore()
+  
   const [isCollapsed, setIsCollapsed] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [showSearchResults, setShowSearchResults] = useState(false)
   const searchInputRef = useRef<HTMLInputElement>(null)
+
+  // Compute visible philosophers based on filters
+  const visiblePhilosophers = useMemo(() => {
+    return philosophers.filter((p: any) => {
+      const inTimeRange = p.birthYear >= filters.timeRange[0] && 
+                          p.birthYear <= filters.timeRange[1]
+      const inEra = filters.selectedEras.includes(p.era)
+      const inDomain = filters.selectedDomains.includes(p.primaryDomain.toLowerCase())
+      const matchesSearch = !filters.searchQuery || 
+        p.name.toLowerCase().includes(filters.searchQuery.toLowerCase())
+      
+      return inTimeRange && inEra && inDomain && matchesSearch
+    })
+  }, [philosophers, filters])
+  
+  // Update visible philosophers in store
+  useEffect(() => {
+    const visibleIds = new Set(visiblePhilosophers.map(p => p.id))
+    usePhilosopherStore.setState({ visiblePhilosophers: visibleIds })
+  }, [visiblePhilosophers])
 
   // Check if mobile
   useEffect(() => {
@@ -108,23 +72,9 @@ export default function Sidebar({
     return `${year} CE`
   }
 
-  const toggleEra = (era: string) => {
-    if (selectedEras.includes(era)) {
-      onSelectedErasChange(selectedEras.filter(e => e !== era))
-    } else {
-      onSelectedErasChange([...selectedEras, era])
-    }
-  }
-
-  const toggleDomain = (domain: string) => {
-    if (selectedDomains.includes(domain)) {
-      onSelectedDomainsChange(selectedDomains.filter(d => d !== domain))
-    } else {
-      onSelectedDomainsChange([...selectedDomains, domain])
-    }
-  }
-
   const domains = Object.keys(domainColors)
+  const minYear = -700
+  const maxYear = 2100
 
   return (
     <>
@@ -169,9 +119,9 @@ export default function Sidebar({
                 ref={searchInputRef}
                 type="text"
                 placeholder="Search philosophers..."
-                value={searchQuery}
+                value={filters.searchQuery}
                 onChange={(e) => {
-                  onSearchQueryChange(e.target.value)
+                  filters.setSearchQuery(e.target.value)
                   setShowSearchResults(true)
                 }}
                 onFocus={() => setShowSearchResults(true)}
@@ -181,10 +131,10 @@ export default function Sidebar({
                 }}
                 className="pl-9 h-10 text-sm glass border-white/10 text-white placeholder:text-white/30 focus:border-white/20 focus:ring-1 focus:ring-white/20"
               />
-              {searchQuery && (
+              {filters.searchQuery && (
                 <button
                   onClick={() => {
-                    onSearchQueryChange("")
+                    filters.setSearchQuery("")
                     setShowSearchResults(false)
                   }}
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/40 hover:text-white/60 transition-colors"
@@ -195,40 +145,36 @@ export default function Sidebar({
               
               {/* Search Results Dropdown */}
               <SearchResults
-                results={allPhilosophers.filter(philosopher => {
-                  const query = searchQuery.toLowerCase()
-                  return philosopher.name.toLowerCase().includes(query) ||
-                    philosopher.tags.some(tag => tag.toLowerCase().includes(query)) ||
-                    Object.values(philosopher.domainSummaries).some(summary => 
-                      summary.toLowerCase().includes(query)
-                    )
+                results={philosophers.filter((philosopher: any) => {
+                  const query = filters.searchQuery.toLowerCase()
+                  return philosopher.name.toLowerCase().includes(query)
                 })}
-                searchQuery={searchQuery}
+                searchQuery={filters.searchQuery}
                 onSelectPhilosopher={(philosopher) => {
-                  onSelectPhilosopher(philosopher)
+                  selectPhilosopher(philosopher)
                   setShowSearchResults(false)
-                  onSearchQueryChange("")
+                  filters.setSearchQuery("")
                 }}
-                isVisible={showSearchResults && searchQuery.length > 0}
+                isVisible={showSearchResults && filters.searchQuery.length > 0}
               />
             </div>
 
             {/* Count display */}
             <div className="mt-3 space-y-2">
               <div className="text-xs text-white/50 font-medium">
-                Showing <span className="text-white/80">{visiblePhilosophersCount}</span> of <span className="text-white/80">{totalPhilosophersCount}</span> philosophers
+                Showing <span className="text-white/80">{visiblePhilosophers.length}</span> of <span className="text-white/80">{philosophers.length}</span> philosophers
               </div>
               
               {/* Active filters indicator */}
               {(() => {
                 const activeFilters = []
-                if (selectedEras.length < timePeriods.length) {
-                  activeFilters.push(`${selectedEras.length} era${selectedEras.length !== 1 ? 's' : ''}`)
+                if (filters.selectedEras.length < timePeriods.length) {
+                  activeFilters.push(`${filters.selectedEras.length} era${filters.selectedEras.length !== 1 ? 's' : ''}`)
                 }
-                if (selectedDomains.length < Object.keys(domainColors).length) {
-                  activeFilters.push(`${selectedDomains.length} domain${selectedDomains.length !== 1 ? 's' : ''}`)
+                if (filters.selectedDomains.length < Object.keys(domainColors).length) {
+                  activeFilters.push(`${filters.selectedDomains.length} domain${filters.selectedDomains.length !== 1 ? 's' : ''}`)
                 }
-                const [minTime, maxTime] = timeRange
+                const [minTime, maxTime] = filters.timeRange
                 if (minTime > minYear || maxTime < maxYear) {
                   activeFilters.push('time range')
                 }
@@ -257,7 +203,7 @@ export default function Sidebar({
                 <Button
                   variant={viewMode === 'orb' ? 'default' : 'outline'}
                   size="sm"
-                  onClick={() => onViewModeChange('orb')}
+                  onClick={() => setViewMode('orb')}
                   className={`flex-1 glass-button ${viewMode === 'orb' ? 'bg-blue-500/20 border-blue-500/50 text-blue-100' : ''}`}
                 >
                   Orb View
@@ -265,7 +211,7 @@ export default function Sidebar({
                 <Button
                   variant={viewMode === 'helix' ? 'default' : 'outline'}
                   size="sm"
-                  onClick={() => onViewModeChange('helix')}
+                  onClick={() => setViewMode('helix')}
                   className={`flex-1 glass-button ${viewMode === 'helix' ? 'bg-purple-500/20 border-purple-500/50 text-purple-100' : ''}`}
                 >
                   Timeline View
@@ -283,8 +229,8 @@ export default function Sidebar({
                     className="flex items-center gap-3 text-sm text-white/70 hover:text-white cursor-pointer group transition-colors"
                   >
                     <Checkbox
-                      checked={selectedEras.includes(period.name)}
-                      onCheckedChange={() => toggleEra(period.name)}
+                      checked={filters.selectedEras.includes(period.name)}
+                      onCheckedChange={() => filters.toggleEra(period.name)}
                       className="border-white/20 data-[state=checked]:bg-blue-500/30 data-[state=checked]:border-blue-400"
                     />
                     <span className="flex-1 font-medium">{period.name}</span>
@@ -306,8 +252,8 @@ export default function Sidebar({
                     className="flex items-center gap-3 text-sm text-white/70 hover:text-white cursor-pointer group transition-colors"
                   >
                     <Checkbox
-                      checked={selectedDomains.includes(domain)}
-                      onCheckedChange={() => toggleDomain(domain)}
+                      checked={filters.selectedDomains.includes(domain)}
+                      onCheckedChange={() => filters.toggleDomain(domain)}
                       className="border-white/20 data-[state=checked]:bg-blue-500/30 data-[state=checked]:border-blue-400"
                     />
                     <div className="flex items-center gap-3 flex-1">
@@ -327,15 +273,15 @@ export default function Sidebar({
               <h3 className="heading-secondary mb-4">Time Range</h3>
               <div className="space-y-4">
                 <div className="flex justify-between text-sm text-white/80 font-medium">
-                  <span>{formatYear(timeRange[0])}</span>
-                  <span>{formatYear(timeRange[1])}</span>
+                  <span>{formatYear(filters.timeRange[0])}</span>
+                  <span>{formatYear(filters.timeRange[1])}</span>
                 </div>
                 <Slider
                   min={minYear}
                   max={maxYear}
                   step={1}
-                  value={timeRange}
-                  onValueChange={onTimeRangeChange}
+                  value={filters.timeRange}
+                  onValueChange={filters.setTimeRange}
                   className="w-full"
                 />
                 <div className="flex justify-between text-xs text-white/40">
@@ -353,7 +299,7 @@ export default function Sidebar({
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => onPausedChange(!isPaused)}
+                    onClick={() => setIsPaused(!isPaused)}
                     className="flex-1 glass-button"
                   >
                     {isPaused ? (
@@ -380,7 +326,7 @@ export default function Sidebar({
                       variant="outline"
                       size="icon"
                       className="h-8 w-8 glass-button"
-                      onClick={() => onSpeedChange(Math.max(0.1, speed - 0.1))}
+                      onClick={() => setSpeed(Math.max(0.1, speed - 0.1))}
                     >
                       <ChevronDown size={14} />
                     </Button>
@@ -389,14 +335,14 @@ export default function Sidebar({
                       min={0.1}
                       max={3}
                       step={0.1}
-                      onValueChange={(value) => onSpeedChange(value[0])}
+                      onValueChange={(value) => setSpeed(value[0])}
                       className="flex-1"
                     />
                     <Button
                       variant="outline"
                       size="icon"
                       className="h-8 w-8 glass-button"
-                      onClick={() => onSpeedChange(Math.min(3, speed + 0.1))}
+                      onClick={() => setSpeed(Math.min(3, speed + 0.1))}
                     >
                       <ChevronUp size={14} />
                     </Button>
@@ -409,13 +355,13 @@ export default function Sidebar({
             <div className="glass-panel">
               <h3 className="heading-secondary mb-4">Connections</h3>
               <Button
-                variant={showConnections ? 'default' : 'outline'}
+                variant={filters.showConnections ? 'default' : 'outline'}
                 size="sm"
-                onClick={() => onShowConnectionsChange(!showConnections)}
-                className={`w-full glass-button ${showConnections ? 'bg-green-500/20 border-green-500/50 text-green-100' : ''}`}
+                onClick={() => filters.setShowConnections(!filters.showConnections)}
+                className={`w-full glass-button ${filters.showConnections ? 'bg-green-500/20 border-green-500/50 text-green-100' : ''}`}
               >
                 <Network size={14} className="mr-2" />
-                {showConnections ? 'Hide' : 'Show'} Influences
+                {filters.showConnections ? 'Hide' : 'Show'} Influences
               </Button>
             </div>
           </div>

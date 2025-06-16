@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Philosophical Nexus</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap');
+
+        :root {
+            --color-ethics: #3b82f6; /* Emerald -> Blue */
+            --color-politics: #ef4444; /* Ruby */
+            --color-metaphysics: #8b5cf6; /* Amethyst */
+            --color-epistemology: #eab308; /* Amber */
+            --color-aesthetics: #ec4899; /* Magenta */
+            --text-color: rgba(255, 255, 255, 0.9);
+            --border-color: rgba(255, 255, 255, 0.2);
+            --gemini-button-bg: rgba(139, 92, 246, 0.2);
+            --gemini-button-border: rgba(139, 92, 246, 0.5);
+            --gemini-button-hover-bg: rgba(139, 92, 246, 0.4);
+        }
+
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            background-color: #01000A;
+            color: var(--text-color);
+        }
+
+        #scene-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .ui-panel {
+            position: fixed;
+            top: 2rem;
+            bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(10, 10, 20, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            z-index: 10;
+        }
+
+        #left-panel {
+            left: 2rem;
+            width: 280px;
+            transform: translateX(0);
+        }
+
+        #right-panel {
+            right: 2rem;
+            width: 320px;
+            transform: translateX(calc(100% + 4rem));
+            visibility: hidden;
+        }
+
+        #right-panel.visible {
+            transform: translateX(0);
+            visibility: visible;
+        }
+        
+        .panel-header {
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .panel-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 1px;
+        }
+        
+        .search-bar {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid transparent;
+            border-radius: 0.5rem;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--border-color);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .filter-group h3 {
+            margin: 0 0 1rem 0;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .timeline-slider {
+            width: 100%;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 2px;
+            background: var(--border-color);
+            outline: none;
+            opacity: 0.7;
+            transition: opacity .2s;
+        }
+
+        .timeline-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.7);
+        }
+
+        .timeline-slider::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.7);
+        }
+        
+        .domain-filters {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .domain-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            transition: background-color 0.2s ease;
+        }
+        .domain-toggle span {
+             transition: color 0.2s ease, text-shadow 0.2s ease;
+        }
+
+        .domain-toggle.active span {
+            font-weight: bold;
+        }
+
+        .domain-toggle[data-domain="ethics"].active span { color: var(--color-ethics); text-shadow: 0 0 8px var(--color-ethics); }
+        .domain-toggle[data-domain="politics"].active span { color: var(--color-politics); text-shadow: 0 0 8px var(--color-politics); }
+        .domain-toggle[data-domain="metaphysics"].active span { color: var(--color-metaphysics); text-shadow: 0 0 8px var(--color-metaphysics); }
+        .domain-toggle[data-domain="epistemology"].active span { color: var(--color-epistemology); text-shadow: 0 0 8px var(--color-epistemology); }
+        .domain-toggle[data-domain="aesthetics"].active span { color: var(--color-aesthetics); text-shadow: 0 0 8px var(--color-aesthetics); }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 34px;
+            height: 20px;
+        }
+
+        .toggle-switch input { display: none; }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255,255,255,0.2);
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 14px;
+            width: 14px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider { background-color: var(--c); }
+        input:checked + .slider:before { transform: translateX(14px); }
+        
+        #philosopher-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 0 15px var(--c, white);
+            transition: all 0.3s ease;
+        }
+
+        #philosopher-details {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+        }
+
+        #philosopher-bio {
+            font-size: 1rem;
+            line-height: 1.6;
+            flex-grow: 1;
+            overflow-y: auto;
+            padding-right: 1rem;
+        }
+        
+        .gemini-features {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .gemini-button {
+            background: var(--gemini-button-bg);
+            border: 1px solid var(--gemini-button-border);
+            color: var(--text-color);
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            text-align: center;
+            font-weight: bold;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .gemini-button:hover {
+            background: var(--gemini-button-hover-bg);
+            border-color: var(--gemini-button-border);
+        }
+        .gemini-comparison-input {
+            display: none;
+            gap: 0.5rem;
+            flex-direction: column;
+        }
+        .gemini-comparison-input input {
+            width: calc(100% - 2rem);
+        }
+
+        #gemini-response-container {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(0,0,0,0.2);
+            border-radius: 0.5rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            min-height: 50px;
+        }
+
+        /* Custom Scrollbar */
+        #philosopher-bio::-webkit-scrollbar, #gemini-response-container::-webkit-scrollbar { width: 4px; }
+        #philosopher-bio::-webkit-scrollbar-track, #gemini-response-container::-webkit-scrollbar-track { background: transparent; }
+        #philosopher-bio::-webkit-scrollbar-thumb, #gemini-response-container::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px;}
+        #philosopher-bio::-webkit-scrollbar-thumb:hover, #gemini-response-container::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.5); }
+        
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .ui-panel {
+                width: calc(100% - 2rem);
+                left: 1rem;
+                right: 1rem;
+                top: 1rem;
+                bottom: auto;
+                max-height: 45vh;
+                overflow-y: auto;
+            }
+            #left-panel {
+                 transform: translateY(calc(-100% - 2rem));
+                 z-index: 10;
+            }
+            #left-panel.mobile-visible {
+                transform: translateY(0);
+            }
+            #right-panel {
+                bottom: 1rem;
+                top: auto;
+                max-height: 45vh;
+                transform: translateY(calc(100% + 2rem));
+            }
+            #right-panel.visible {
+                transform: translateY(0);
+            }
+            #mobile-toggle {
+                display: block;
+            }
+        }
+        #mobile-toggle { 
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 11;
+            background: rgba(10, 10, 20, 0.5);
+            border: 1px solid var(--border-color);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="scene-container"></div>
+    
+    <button id="mobile-toggle">Controls</button>
+
+    <div id="left-panel" class="ui-panel">
+        <div class="panel-header">
+            <h2 class="panel-title">The Nexus</h2>
+        </div>
+        <input type="text" class="search-bar" placeholder="Search philosopher...">
+        
+        <div class="filter-group">
+            <h3>Timeline</h3>
+            <input type="range" min="-700" max="2100" value="-700" class="timeline-slider" id="timeline-slider">
+            <div id="timeline-label" style="text-align: center; margin-top: 0.5rem; font-size: 0.8rem;">700 BCE</div>
+        </div>
+        
+        <div class="filter-group">
+            <h3>Domains</h3>
+            <div class="domain-filters">
+                <!-- Toggles will be generated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <div id="right-panel" class="ui-panel">
+        <!-- Content will be generated by JS -->
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+
+    <script type="module">
+        // --- DATA -------------------------------------------------------------------
+        const philosophers = [
+            { id: 'socrates', name: 'Socrates', birth: -470, death: -399, domain: 'ethics', influences: [], bio: "A classical Greek philosopher credited as one of the founders of Western philosophy. He is an enigmatic figure known chiefly through the accounts of later classical writers, especially the writings of his students Plato and Xenophon." },
+            { id: 'plato', name: 'Plato', birth: -428, death: -348, domain: 'metaphysics', influences: ['socrates'], bio: "An Athenian philosopher during the Classical period in Ancient Greece, founder of the Platonist school of thought, and the Academy, the first institution of higher learning in the Western world." },
+            { id: 'aristotle', name: 'Aristotle', birth: -384, death: -322, domain: 'ethics', influences: ['plato'], bio: "A Greek philosopher and polymath during the Classical period in ancient Greece. Taught by Plato, he was the founder of the Lyceum, the Peripatetic school of philosophy, and the Aristotelian tradition." },
+            { id: 'augustine', name: 'Augustine', birth: 354, death: 430, domain: 'metaphysics', influences: ['plato'], bio: "A theologian, philosopher, and the bishop of Hippo Regius in Numidia, Roman North Africa. His writings influenced the development of Western philosophy and Western Christianity." },
+            { id: 'aquinas', name: 'Thomas Aquinas', birth: 1225, death: 1274, domain: 'metaphysics', influences: ['aristotle', 'augustine'], bio: "An Italian Dominican friar, philosopher, Catholic priest, and Doctor of the Church. An immensely influential philosopher, theologian, and jurist in the tradition of scholasticism." },
+            { id: 'descartes', name: 'René Descartes', birth: 1596, death: 1650, domain: 'epistemology', influences: ['plato', 'aquinas'], bio: "A French philosopher, mathematician, and scientist. Dubbed the father of modern western philosophy, much of subsequent Western philosophy is a response to his writings." },
+            { id: 'locke', name: 'John Locke', birth: 1632, death: 1704, domain: 'politics', influences: ['descartes'], bio: "An English philosopher and physician, widely regarded as one of the most influential of Enlightenment thinkers and commonly known as the 'Father of Liberalism'." },
+            { id: 'hume', name: 'David Hume', birth: 1711, death: 1776, domain: 'epistemology', influences: ['locke'], bio: "A Scottish Enlightenment philosopher, historian, economist, and essayist, who is best known today for his highly influential system of philosophical empiricism, skepticism, and naturalism." },
+            { id: 'kant', name: 'Immanuel Kant', birth: 1724, death: 1804, domain: 'ethics', influences: ['hume', 'descartes'], bio: "A German philosopher and one of the central Enlightenment thinkers. Kant's comprehensive and systematic works in epistemology, metaphysics, ethics, and aesthetics have made him one of the most influential figures in modern Western philosophy." },
+            { id: 'nietzsche', name: 'Friedrich Nietzsche', birth: 1844, death: 1900, domain: 'aesthetics', influences: ['plato', 'kant'], bio: "A German philosopher, cultural critic, composer, poet, and philologist whose work has exerted a profound influence on modern intellectual history." },
+            { id: 'sartre', name: 'Jean-Paul Sartre', birth: 1905, death: 1980, domain: 'aesthetics', influences: ['nietzsche', 'kant'], bio: "A French philosopher, playwright, novelist, political activist, biographer, and literary critic. He was one of the key figures in the philosophy of existentialism and phenomenology." },
+        ];
+
+        const domains = {
+            'ethics': { color: 0x3b82f6, name: 'Ethics' },
+            'politics': { color: 0xef4444, name: 'Politics' },
+            'metaphysics': { color: 0x8b5cf6, name: 'Metaphysics' },
+            'epistemology': { color: 0xeab308, name: 'Epistemology' },
+            'aesthetics': { color: 0xec4899, name: 'Aesthetics' }
+        };
+
+        // --- SCENE SETUP ------------------------------------------------------------
+        let scene, camera, renderer, controls;
+        let starfield, nebula, spiralMesh;
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        let philosopherObjects = [];
+        let connectionLines = new THREE.Group();
+        let hoveredObject = null;
+        let selectedObject = null;
+
+        const container = document.getElementById('scene-container');
+
+        function init() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000);
+            camera.position.set(0, 150, 600);
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            container.appendChild(renderer.domElement);
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.screenSpacePanning = false;
+            controls.minDistance = 50;
+            controls.maxDistance = 2000;
+            controls.maxPolarAngle = Math.PI / 2 + 0.5; 
+            controls.minPolarAngle = Math.PI / 4;
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+            scene.add(ambientLight);
+            createNebula();
+            createStarfield();
+            createSpiral();
+            createPhilosopherNodes();
+            scene.add(connectionLines);
+            window.addEventListener('resize', onWindowResize, false);
+            window.addEventListener('mousemove', onMouseMove, false);
+            container.addEventListener('click', onClick, false); // Changed to container
+            initUI();
+            animate();
+        }
+
+        // --- 3D OBJECT CREATION (functions from previous step are condensed for brevity)
+        function createNebula() {
+            const nebulaGeometry = new THREE.PlaneGeometry(8000, 8000);
+            const nebulaMaterial = new THREE.ShaderMaterial({
+                uniforms: { time: { value: 0.0 }, resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) }, color1: { value: new THREE.Color(0x2a004f) }, color2: { value: new THREE.Color(0x8a0256) } },
+                vertexShader: `varying vec2 vUv; void main() { vUv = uv; gl_Position = vec4(position, 1.0); }`,
+                fragmentShader: `uniform vec2 resolution; uniform float time; uniform vec3 color1; uniform vec3 color2; varying vec2 vUv; float random (in vec2 st) { return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123); } float noise (in vec2 st) { vec2 i = floor(st); vec2 f = fract(st); float a = random(i); float b = random(i + vec2(1.0, 0.0)); float c = random(i + vec2(0.0, 1.0)); float d = random(i + vec2(1.0, 1.0)); vec2 u = f * f * (3.0 - 2.0 * f); return mix(a, b, u.x) + (c - a)* u.y * (1.0 - u.x) + (d - b) * u.y * u.x; } float fbm (in vec2 st) { float value = 0.0; float amplitude = .5; for (int i = 0; i < 4; i++) { value += amplitude * noise(st); st *= 2.; amplitude *= .5; } return value; } void main() { vec2 st = vUv * 3.0; st.x *= resolution.x / resolution.y; vec2 q = vec2(fbm(st + 0.1 * time), fbm(st + vec2(1.0))); vec2 r = vec2(fbm(st + q + 0.15 * time), fbm(st + q + 0.126 * time)); float f = fbm(st + r); vec3 color = mix(color1, color2, clamp((f*f)*2.5,0.0,1.0)); gl_FragColor = vec4(color, f * 0.5 + 0.5); }`,
+                depthWrite: false, transparent: true, blending: THREE.AdditiveBlending
+            });
+            nebula = new THREE.Mesh(nebulaGeometry, nebulaMaterial);
+            nebula.position.z = -3000;
+            scene.add(nebula);
+        }
+        function createStarfield() {
+            const starGeometry = new THREE.BufferGeometry();
+            const starMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 2.0, transparent: true, opacity: 0.8, map: createStarTexture(), blending: THREE.AdditiveBlending });
+            const starVertices = [];
+            for (let i = 0; i < 20000; i++) {
+                const x = THREE.MathUtils.randFloatSpread(6000); const y = THREE.MathUtils.randFloatSpread(6000); const z = THREE.MathUtils.randFloatSpread(6000);
+                if (new THREE.Vector3(x,y,z).length() > 800) { starVertices.push(x, y, z); }
+            }
+            starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+            starfield = new THREE.Points(starGeometry, starMaterial);
+            scene.add(starfield);
+        }
+        function createStarTexture() {
+            const canvas = document.createElement('canvas'); canvas.width = 64; canvas.height = 64; const context = canvas.getContext('2d');
+            const gradient = context.createRadialGradient(32, 32, 0, 32, 32, 32); gradient.addColorStop(0, 'rgba(255,255,255,1)'); gradient.addColorStop(0.2, 'rgba(255,255,255,0.8)'); gradient.addColorStop(1, 'rgba(255,255,255,0)');
+            context.fillStyle = gradient; context.fillRect(0, 0, 64, 64); return new THREE.CanvasTexture(canvas);
+        }
+        function createSpiral() {
+            const path = new THREE.CatmullRomCurve3(getSpiralPoints(-700, 2100, 50, 4));
+            const geometry = new THREE.TubeGeometry(path, 512, 1.5, 12, false);
+            const progress = new Float32Array(geometry.attributes.position.count);
+            for (let i = 0; i < 512 + 1; i++) { const t = i / 512; for (let j = 0; j < 12 + 1; j++) { const index = i * (12 + 1) + j; progress[index] = t; } }
+            geometry.setAttribute('progress', new THREE.BufferAttribute(progress, 1));
+            const material = new THREE.ShaderMaterial({
+                uniforms: { colors: { value: [new THREE.Color(0xd2b48c), new THREE.Color(0x8A2BE2), new THREE.Color(0xFF0000), new THREE.Color(0x0000FF), new THREE.Color(0xFFA500), new THREE.Color(0x008000), new THREE.Color(0xFFFF00), new THREE.Color(0x40E0D0)] }, time: { value: 0.0 } },
+                vertexShader: `attribute float progress; varying float vProgress; void main() { vProgress = progress; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
+                fragmentShader: `uniform vec3 colors[8]; uniform float time; varying float vProgress; vec3 getColor(float p) { float pos = p * 7.0; int index = int(floor(pos)); float frac = pos - float(index); return mix(colors[index], colors[clamp(index + 1, 0, 7)], frac); } void main() { float pulse = sin(vProgress * 30.0 - time * 1.5) * 0.15 + 0.85; vec3 color = getColor(vProgress) * pulse; gl_FragColor = vec4(color, 0.75); }`,
+                transparent: true, side: THREE.DoubleSide, blending: THREE.AdditiveBlending
+            });
+            spiralMesh = new THREE.Mesh(geometry, material);
+            scene.add(spiralMesh);
+        }
+        function getSpiralPoints(startYear, endYear, verticalSpacing, revolutions) {
+            const points = []; const numPoints = 200; const totalHeight = (philosophers.length + 2) * verticalSpacing;
+            for (let i = 0; i <= numPoints; i++) {
+                const fraction = i / numPoints; const angle = fraction * Math.PI * 2 * revolutions; const radius = 180 + 250 * fraction; const y = -totalHeight / 2 + totalHeight * fraction;
+                const x = Math.cos(angle) * radius; const z = Math.sin(angle) * radius; points.push(new THREE.Vector3(x, y, z));
+            } return points;
+        }
+        function yearToPosition(year, startYear = -700, endYear = 2100) {
+            const path = new THREE.CatmullRomCurve3(getSpiralPoints(startYear, endYear, 50, 4));
+            const fraction = (year - startYear) / (endYear - startYear);
+            return path.getPointAt(fraction);
+        }
+        function createPhilosopherNodes() {
+            philosophers.forEach(p => {
+                const position = yearToPosition(p.birth); const domainInfo = domains[p.domain];
+                const geometry = new THREE.SphereGeometry(8, 32, 32);
+                const material = new THREE.MeshPhongMaterial({ color: new THREE.Color(domainInfo.color), emissive: new THREE.Color(domainInfo.color).multiplyScalar(0.4), shininess: 80 });
+                const node = new THREE.Mesh(geometry, material);
+                node.position.copy(position);
+                const coronaGeometry = new THREE.SphereGeometry(12, 32, 32);
+                const coronaMaterial = new THREE.ShaderMaterial({ uniforms: { "c": { value: 1.0 }, "p": { value: 3.0 }, glowColor: { value: new THREE.Color(domainInfo.color) }, viewVector: { value: camera.position } }, vertexShader: `uniform vec3 viewVector; uniform float c; uniform float p; varying float intensity; void main() { vec3 vNormal = normalize( normalMatrix * normal ); vec3 vNormel = normalize( normalMatrix * viewVector ); intensity = pow( c - dot(vNormal, vNormel), p ); gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );}`, fragmentShader: `uniform vec3 glowColor; varying float intensity; void main() { vec3 glow = glowColor * intensity; gl_FragColor = vec4( glow, intensity * 0.7 );}`, side: THREE.BackSide, blending: THREE.AdditiveBlending, transparent: true });
+                const corona = new THREE.Mesh(coronaGeometry, coronaMaterial);
+                node.add(corona);
+                node.userData = p; philosopherObjects.push(node); scene.add(node);
+            });
+        }
+        function showConnections(philosopherNode) {
+            connectionLines.children.forEach(c => connectionLines.remove(c)); connectionLines.children.length = 0;
+            if (!philosopherNode) return;
+            const pData = philosopherNode.userData; const startPoint = philosopherNode.position;
+            pData.influences.forEach(influenceId => {
+                const influencedNode = philosopherObjects.find(o => o.userData.id === influenceId);
+                if (influencedNode && influencedNode.visible) {
+                    const endPoint = influencedNode.position; const points = [startPoint, endPoint];
+                    const geometry = new THREE.BufferGeometry().setFromPoints(points); const material = new THREE.LineBasicMaterial({ color: 0x00ffff, transparent: true, opacity: 0.7, blending: THREE.AdditiveBlending });
+                    const line = new THREE.Line(geometry, material); connectionLines.add(line);
+                }
+            });
+        }
+
+        // --- ANIMATION & INTERACTIVITY ----------------------------------------------
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            const time = performance.now() * 0.001;
+            if (spiralMesh) spiralMesh.material.uniforms.time.value = time;
+            if (nebula) nebula.material.uniforms.time.value = time / 5;
+            philosopherObjects.forEach(obj => {
+                if (selectedObject === obj) { obj.children[0].scale.setScalar(1 + Math.sin(time * 5) * 0.1); } 
+                else if (hoveredObject !== obj) { gsap.to(obj.children[0].scale, {x:1, y:1, z:1, duration: 0.5}); }
+            });
+            if(starfield) starfield.rotation.y += 0.00005;
+            renderer.render(scene, camera);
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            if(nebula) nebula.material.uniforms.resolution.value.set(window.innerWidth, window.innerHeight);
+        }
+
+        function onMouseMove(event) {
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1; mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects(philosopherObjects.filter(o => o.visible));
+            if (intersects.length > 0) {
+                if (hoveredObject !== intersects[0].object) {
+                    hoveredObject = intersects[0].object; document.body.style.cursor = 'pointer';
+                    if (selectedObject !== hoveredObject) { gsap.to(hoveredObject.children[0].scale, {x:1.2, y:1.2, z:1.2, duration: 0.3}); }
+                }
+            } else {
+                if (hoveredObject) { document.body.style.cursor = 'default'; }
+                hoveredObject = null;
+            }
+        }
+
+        function onClick(event) {
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects(philosopherObjects.filter(o => o.visible));
+            if (intersects.length > 0) {
+                const clickedObject = intersects[0].object;
+                if(selectedObject !== clickedObject) {
+                    if (selectedObject) { gsap.to(selectedObject.children[0].scale, {x:1, y:1, z:1, duration: 0.5}); }
+                    selectedObject = clickedObject;
+                    showInfoPanel(selectedObject.userData);
+                    showConnections(selectedObject);
+                    gsap.to(controls.target, { x: selectedObject.position.x, y: selectedObject.position.y, z: selectedObject.position.z, duration: 1.5, ease: 'power2.inOut' });
+                    gsap.to(camera.position, { x: selectedObject.position.x + 100, y: selectedObject.position.y, z: selectedObject.position.z + 100, duration: 1.5, ease: 'power2.inOut' });
+                }
+            } else {
+                 if (!event.target.closest('.ui-panel')) {
+                    selectedObject = null; hideInfoPanel(); showConnections(null);
+                }
+            }
+        }
+        
+        // --- UI LOGIC ---------------------------------------------------------------
+        const leftPanel = document.getElementById('left-panel');
+        const rightPanel = document.getElementById('right-panel');
+        const searchInput = document.querySelector('.search-bar');
+        const timelineSlider = document.getElementById('timeline-slider');
+        const timelineLabel = document.getElementById('timeline-label');
+        const domainFiltersContainer = document.querySelector('.domain-filters');
+        
+        let activeDomains = Object.keys(domains);
+
+        function initUI() {
+            for (const [key, value] of Object.entries(domains)) {
+                const color = `var(--color-${key})`;
+                const toggle = document.createElement('div');
+                toggle.className = 'domain-toggle active';
+                toggle.dataset.domain = key;
+                toggle.innerHTML = `<span>${value.name}</span> <label class="toggle-switch" style="--c: ${color}"><input type="checkbox" checked><span class="slider"></span></label>`;
+                domainFiltersContainer.appendChild(toggle);
+                toggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const checkbox = toggle.querySelector('input');
+                    checkbox.checked = !checkbox.checked;
+                    toggle.classList.toggle('active', checkbox.checked);
+                    if(checkbox.checked) { activeDomains.push(key); } else { activeDomains = activeDomains.filter(d => d !== key); }
+                    filterNodes();
+                });
+            }
+            searchInput.addEventListener('input', filterNodes);
+            timelineSlider.addEventListener('input', () => {
+                const year = parseInt(timelineSlider.value);
+                timelineLabel.textContent = `${Math.abs(year)} ${year < 0 ? 'BCE' : 'CE'}`;
+                const targetPos = yearToPosition(year);
+                controls.target.copy(targetPos);
+                gsap.to(camera.position, { x: targetPos.x + 150, y: targetPos.y + 50, z: targetPos.z + 150, duration: 0.5 });
+            });
+            const mobileToggle = document.getElementById('mobile-toggle');
+            if (window.innerWidth <= 768) {
+                mobileToggle.style.display = 'block';
+                mobileToggle.addEventListener('click', () => { leftPanel.classList.toggle('mobile-visible'); });
+            }
+
+            // Event delegation for Gemini buttons on the right panel
+            rightPanel.addEventListener('click', async (event) => {
+                const target = event.target;
+                const pData = selectedObject.userData;
+                const responseContainer = document.getElementById('gemini-response-container');
+
+                if (target.id === 'gemini-explain-btn') {
+                    const prompt = `Explain the key ideas of the philosopher ${pData.name} in a simple, easy-to-understand way, as if for a five-year-old. Keep it under 100 words. Bio for context: ${pData.bio}`;
+                    await getGeminiResponse(prompt, responseContainer);
+                }
+                
+                if (target.id === 'gemini-compare-btn') {
+                    const compareInputDiv = document.getElementById('gemini-comparison-input');
+                    compareInputDiv.style.display = compareInputDiv.style.display === 'none' ? 'flex' : 'none';
+                }
+
+                if (target.id === 'gemini-compare-submit') {
+                     const otherPhilosopher = document.getElementById('comparison-philosopher-input').value;
+                     if (otherPhilosopher.trim() === '') {
+                        responseContainer.innerHTML = 'Please enter a philosopher to compare.';
+                        return;
+                     }
+                    const prompt = `Briefly compare the philosophical ideas of ${pData.name} and ${otherPhilosopher}. Highlight one key similarity and one key difference. Keep it concise and under 150 words.`;
+                    await getGeminiResponse(prompt, responseContainer);
+                }
+            });
+        }
+        
+        function filterNodes() {
+            const searchTerm = searchInput.value.toLowerCase();
+            philosopherObjects.forEach(node => {
+                const pData = node.userData;
+                const isDomainActive = activeDomains.includes(pData.domain);
+                const nameMatches = pData.name.toLowerCase().includes(searchTerm);
+                const isVisible = isDomainActive && nameMatches;
+                node.visible = isVisible;
+            });
+            if (selectedObject) { showConnections(selectedObject); }
+        }
+
+        function showInfoPanel(pData) {
+            const domainInfo = domains[pData.domain];
+            const color = `var(--color-${pData.domain})`;
+            
+            rightPanel.innerHTML = `
+                <div>
+                    <div class="panel-header" style="border-color: ${color}">
+                        <h2 id="philosopher-name" style="--c: ${color}">${pData.name}</h2>
+                        <div id="philosopher-details">
+                            ${pData.birth} &ndash; ${pData.death} | <span style="color: ${color}">${domainInfo.name}</span>
+                        </div>
+                    </div>
+                    <p id="philosopher-bio">${pData.bio}</p>
+                </div>
+                <div class="gemini-features">
+                    <button id="gemini-explain-btn" class="gemini-button">✨ Explain Like I'm 5</button>
+                    <button id="gemini-compare-btn" class="gemini-button">✨ Compare with...</button>
+                    <div id="gemini-comparison-input" class="gemini-comparison-input">
+                       <input type="text" id="comparison-philosopher-input" class="search-bar" placeholder="e.g., Kant">
+                       <button id="gemini-compare-submit" class="gemini-button" style="background: var(--color-epistemology); border: none;">Compare</button>
+                    </div>
+                    <div id="gemini-response-container">Click a ✨ feature to learn more!</div>
+                </div>
+            `;
+            rightPanel.classList.add('visible');
+        }
+        
+        function hideInfoPanel() {
+            rightPanel.classList.remove('visible');
+        }
+
+        // --- GEMINI API INTEGRATION ---
+        async function getGeminiResponse(prompt, responseContainer) {
+            responseContainer.innerHTML = 'Thinking...';
+            const apiKey = ""; // API Key is handled by the environment
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+            
+            const payload = {
+                contents: [{
+                    parts: [{ text: prompt }]
+                }]
+            };
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+                
+                if (result.candidates && result.candidates.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    responseContainer.innerHTML = text.replace(/\n/g, '<br>'); // Format response
+                } else {
+                    throw new Error("No content received from API.");
+                }
+
+            } catch (error) {
+                console.error("Gemini API call failed:", error);
+                responseContainer.innerHTML = `Sorry, I couldn't fetch an answer right now. Please try again.`;
+            }
+        }
+        
+        init();
+
+    </script>
+</body>
+</html>

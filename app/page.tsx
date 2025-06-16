@@ -4,6 +4,7 @@ import dynamic from "next/dynamic"
 import { Suspense } from "react"
 
 const Globe = dynamic(() => import("@/components/Globe"), { ssr: false })
+const LLMPanel = dynamic(() => import("@/src/components/LLMPanel"), { ssr: false })
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <Suspense fallback={<div className="flex items-center justify-center h-screen text-white">Loading...</div>}>
         <Globe />
       </Suspense>
+      <LLMPanel />
     </main>
   )
 }
